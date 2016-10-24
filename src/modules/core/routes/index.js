@@ -4,17 +4,16 @@
 
 // lazy loading Components
 // https://github.com/vuejs/vue-router/blob/dev/examples/lazy-loading/app.js#L8
-const lazyLoading = (name, index = false) => () => System.import(`modules/core/views/${name}${index ? '/index' : ''}`)
-import Home from '../views/home'
+// const lazyLoading = (name, index = false) => r => require.ensure([], () => r(require(`../views/${name}.vue`)))
+const lazyLoading = (name, index = false) => resolve => require([`../views/${name}${index ? '/index' : ''}.vue`], resolve)
 
 export default [
     {
         name: 'Dashboard',
-        path: '/home',
+        path: '/',
         meta: {
             icon: 'fa-tachometer'
         },
-        // component: Home
         component: lazyLoading('home', true)
     },
 ];

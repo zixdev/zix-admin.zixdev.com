@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import CoreRoutes from '../modules/core/routes'
-import Home from '../modules/core/views/home'
 Vue.use(Router)
 
-console.log(CoreRoutes)
 export default new Router({
     mode: 'hash', // Demo is living in GitHub.io, so required!
     linkActiveClass: 'is-active',
@@ -13,9 +11,10 @@ export default new Router({
         // {
         //     path: '/',
         //     component: Home
-        // }
+        // },
+            ...CoreRoutes
         //
-        ...generateRoutesFromMenu(CoreRoutes),
+        // ...generateRoutesFromMenu(CoreRoutes),
         // {
         //     path: '*',
         //     redirect: '/'
