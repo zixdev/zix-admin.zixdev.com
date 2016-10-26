@@ -1,31 +1,33 @@
 import Vue from "vue";
-import Resource from "vue-resource";
-import { sync } from 'vuex-router-sync'
-
+import "./plugins";
 import App from "./App";
-import './plugins'
-import router from './router'
-import store from './store'
+import router from "./router";
+import Guard from "./modules/core/guard";
+import store from './store';
 
-Vue.use(Resource)
-// sync(store, router)
 
-// const { state } = store
-// const { config } = state
+/**
+ * We'll register a HTTP interceptor to attach the "XSRF" header to each of
+ * the outgoing requests issued by this application. The CSRF middleware
+ * included with Laravel will automatically verify the header's value.
+ */
 
-// router.beforeEach((route, redirect, next) => {
-//     if (config.mobile && config.sidebar) {
-//         config.sidebar = false
-//     }
-//     next()
-// })
+Vue.http.interceptors.push(function (request, next) {
+    // request.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN');
+    Vue.http.options.root = 'apoi';
+    Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    next();
+});
 
-// Object.keys(filters).forEach(key => {
-//     Vue.filter(key, filters[key])
-// })
+
+router.beforeEach((route, redirect, next) => {
+    Guard(route, redirect, next);
+    next()
+});
 
 const app = new Vue({
     template: '<App/>',
     components: {App},
     router,
-}).$mount('#app')
+    store
+}).$mount('#app');

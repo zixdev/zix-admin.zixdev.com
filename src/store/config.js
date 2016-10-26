@@ -1,4 +1,3 @@
 export default {
-  mobile: false,
-  sidebar: true
+    api_url: 'http://localhost:8000/api/',
 }

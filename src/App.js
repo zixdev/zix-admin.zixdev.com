@@ -6,15 +6,15 @@ import AppHeader from "./components/layouts/AppHeader";
 @Component({
     template: `
         <div id="wrapper" >
-            <app-sidebar></app-sidebar>
-            <div class="page-wrapper gray-bg">
-                <app-header></app-header>
+            <app-sidebar v-if="authorized"></app-sidebar>
+            <div v-bind:class="{'page-wrapper gray-bg': authorized}">
+                <app-header  v-if="authorized"></app-header>
     
-                <div class="row wrapper wrapper-content zix-background">
+                <div v-bind:class="{'row wrapper wrapper-content': authorized, 'zix-background': !authorized}">
                     <router-view></router-view>
                 </div>
                 
-                <app-footer></app-footer>
+                <app-footer  v-if="authorized"></app-footer>
             </div>
     
         </div>
@@ -22,8 +22,34 @@ import AppHeader from "./components/layouts/AppHeader";
     components: {
         AppFooter, AppSidebar, AppHeader
     },
-    style: require('./styles/app.scss')
+    style: require('./styles/app.scss'),
+
+
 })
 export default class App {
+    get authorized() {
+        return this.$store.state.authorized;
+    }
+
+    created() {
+        this.checkForAuthenticatedUser();
+
+    }
+
+    checkForAuthenticatedUser() {
+        const token = localStorage.getItem('token');
+        // If we have a token, consider the user to be signed in.
+        if (token) {
+            this.$http.get('http://localhost:8000/api/user')
+                .then(
+                    res => console.info(res),
+                )
+                .catch(
+                    err => console.warn(err)
+                );
+            return this.$store.state.authorized = true;
+        }
+        return this.$store.state.authorized = false;
+    }
 
 }

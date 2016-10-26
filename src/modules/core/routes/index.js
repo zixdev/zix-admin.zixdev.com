@@ -5,15 +5,15 @@
 // lazy loading Components
 // https://github.com/vuejs/vue-router/blob/dev/examples/lazy-loading/app.js#L8
 const lazyLoading = (name, index = false) => resolve => require([`../views/${name}${index ? '/index' : ''}.vue`], resolve)
-
 export default [
     {
         name: 'Dashboard',
         path: '/',
         meta: {
-            icon: 'fa-tachometer'
+            icon: 'fa-tachometer',
+            auth: true,
         },
-        component: lazyLoading('home', true)
+        component: lazyLoading('home', true),
     },
 
     {
