@@ -6,15 +6,15 @@ import AppHeader from "./components/layouts/AppHeader";
 @Component({
     template: `
         <div id="wrapper" >
-            <app-sidebar v-if="authorized"></app-sidebar>
+            <app-sidebar v-show="authorized"></app-sidebar>
             <div v-bind:class="{'page-wrapper gray-bg': authorized}">
-                <app-header  v-if="authorized"></app-header>
+                <app-header  v-show="authorized"></app-header>
     
                 <div v-bind:class="{'row wrapper wrapper-content': authorized, 'zix-background': !authorized}">
                     <router-view></router-view>
                 </div>
                 
-                <app-footer  v-if="authorized"></app-footer>
+                <app-footer  v-show="authorized"></app-footer>
             </div>
     
         </div>

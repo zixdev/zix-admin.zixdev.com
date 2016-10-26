@@ -80,15 +80,15 @@
                         let res = response.data.data;
                         if (res.permissions.includes('full_access') || res.permissions.includes('view_admin')) {
                             localStorage.setItem('token', res.token);
+                            this.$store.state.token = res.token;
+                            this.$store.state.user = res.user;
                             this.form.submitted = true;
 
                             setTimeout(() => {
-                                // add it to the app state
                                 this.$store.state.authorized = true;
-                                this.$store.state.token = res.token;
-
                                 this.$router.push({name: 'Dashboard'});
                             }, 1000);
+
                             return true;
                         }
                         this.form.errors = {

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import "./plugins";
+import "./tmp-ux";
 import App from "./App";
 import router from "./router";
 import Guard from "./modules/core/guard";
@@ -14,7 +15,6 @@ import store from './store';
 
 Vue.http.interceptors.push(function (request, next) {
     // request.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN');
-    Vue.http.options.root = 'apoi';
     Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     next();
 });
