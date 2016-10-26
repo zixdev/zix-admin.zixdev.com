@@ -1,34 +1,30 @@
-<template>
-    <div class="full-bg-img">
-        <div class="container">
-
-            <ul class="list-unstyled">
-                <li>
-                    <img class="img-responsive center-block" src="/assets/admin/images/logo.png" alt="Zix Development">
-                </li>
-                <li>
-                    <div class="middle-box text-center loginscreen ">
-
-                    </div>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-
-
-</template>
-
 <script>
     import Component from 'vue-class-component'
 
-    @Component
+    @Component({
+        template: `
+            <div id="loader-wrapper">
+                <div id="loader"></div>
+            </div>
+        `
+    })
     export default class Logout {
         created() {
-            console.info('register.vue Been Created')
+            // - Clean Token From user Local Storage
+            localStorage.removeItem('token');
+
+            // - Clean Data From App Sate
+            this.$store.state.authorized = false;
+            this.$store.state.token = null;
+            this.$store.state.user = {};
+
+            // - Notify the API
+            this.$http.get(this.$store.state.config.api_url + 'logout');
+
+            setTimeout(() => {
+                this.$router.push({name: 'Login'});
+            }, 1000);
+
         }
     }
 </script>
-<style>
-
-</style>

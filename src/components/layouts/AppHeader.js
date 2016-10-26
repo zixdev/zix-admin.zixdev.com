@@ -14,10 +14,9 @@ import Component from "vue-class-component";
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a routerLink="/auth/logout">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
+                        <router-link :to="{name: 'Logout'}"><i class="fa fa-sign-out"></i> Log out</router-link>
                     </li>
+               
                 </ul>
     
             </nav>

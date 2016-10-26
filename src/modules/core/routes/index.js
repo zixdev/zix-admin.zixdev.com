@@ -17,7 +17,7 @@ export default [
     },
 
     {
-        name: 'Admin Login',
+        name: 'Login',
         path: '/auth/login',
         meta: {
             icon: 'fa-tachometer'
@@ -26,7 +26,7 @@ export default [
     },
 
     {
-        name: 'Admin Logout',
+        name: 'Logout',
         path: '/auth/logout',
         meta: {
             icon: 'fa-tachometer'
