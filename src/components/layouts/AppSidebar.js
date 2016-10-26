@@ -1,4 +1,5 @@
-import Component from 'vue-class-component'
+import Component from "vue-class-component";
+import routes from "../../router/menu";
 
 @Component({
     template: `
@@ -25,33 +26,25 @@ import Component from 'vue-class-component'
                         Zix+
                     </div>
                 </li>
-                <li class="active">
-                    <a routerLink="/">
-                        <i class="fa fa-th-large"></i>
-                        <span class="nav-label">
-                        Dashboard
-                    </span>
-                    </a>
-                </li>
+                
+                <router-link v-for="route of routes" tag="li" :to="link(route)" >
+                    <router-link :to="link(route)">
+                         <i :class="'fa ' + route.icon"></i> 
+                        <span class="nav-label"> {{route.name}} </span>
+                        <span v-if="route.children" class="fa arrow"></span>
+                    </router-link>
+                   
+                    <ul v-if="route.children" class="nav nav-second-level collapse">
 
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-cog"></i>
-                        <span class="nav-label">
-                        System
-                    </span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level collapse">
-
-                        <li>
-                            <a routerLink="/system/sites">
-                                Websites
-                            </a>
-                        </li>
+                        <router-link v-for="child of route.children" tag="li" :to="link(child)">
+                            <router-link :to="link(child)">
+                                 {{child.name}} 
+                            </router-link>
+                        </router-link>
 
                     </ul>
-                </li>
+                </router-link>
+                    
             </ul>
 
         </div>
@@ -61,8 +54,30 @@ import Component from 'vue-class-component'
 export default class AppSidebar {
 
     mounted() {
-
+        console.log(this.routes)
     }
 
+    link(route) {
+        return route.children ? '' : {name: route.name, activeClass: 'active'} ;
+    }
+
+    get routes() {
+        return routes.filter(route => route.meta.menu).map(route => {
+            return {
+                path: route.path,
+                name: route.name,
+                permission: route.meta.permission,
+                icon: route.meta.icon,
+                children: route.children ? route.children.filter(route => route.meta.menu).map(route => {
+                    return {
+                        path: route.path,
+                        name: route.name,
+                        permission: route.meta.permission,
+                        icon: route.meta.icon
+                    }
+                }) : null
+            }
+        });
+    }
 
 }
