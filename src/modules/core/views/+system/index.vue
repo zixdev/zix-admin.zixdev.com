@@ -10,7 +10,7 @@
     @Component
     export default class System {
         created() {
-            console.info('index.vue Been Created')
+
         }
     }
 </script>

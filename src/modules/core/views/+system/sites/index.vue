@@ -14,9 +14,11 @@
             </div>
 
             <div class="ibox-content">
-                <div class="table-responsive">
 
-                </div>
+                <data-table
+                    :url="url"
+                    :columns="columns"
+                ></data-table>
 
             </div>
         </div>
@@ -25,14 +27,46 @@
 
 <script>
     import Component from 'vue-class-component'
-    import Vuetable from "vuetable-2/src/components/Vuetable.vue";
-    import VuetablePagination from "vuetable-2/src/components/VuetablePagination.vue";
-    import VuetablePaginationDropdown from "vuetable-2/src/components/VuetablePaginationDropdown.vue";
-    import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo.vue";
+    import DataTable from '../../../components/table/data-table.vue'
 
-    @Component
+    @Component({
+        components: {
+            DataTable
+        }
+    })
     export default class Index {
+        get url() {
+            return this.$store.state.config.api_url + 'sites';
+        }
 
+        get columns() {
+            return [
+                {
+                    id: 'id',
+                    name: 'Id',
+                    trClass: '',
+                    style: '',
+                    filtrable: true
+//                    callback: (data) =>  data
+                },
+                {
+                    id: 'name',
+                    name: 'Name',
+                    trClass: '',
+                    style: '',
+                    filtrable: true
+//                    callback: (data) => data
+                },
+                {
+                    id: 'url',
+                    name: 'Url',
+                    trClass: '',
+                    style: '',
+                    filtrable: true
+//                    callback: (data) => console.log(data)
+                }
+            ]
+        }
 
 
 
