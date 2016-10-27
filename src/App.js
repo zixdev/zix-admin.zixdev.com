@@ -42,10 +42,10 @@ export default class App {
         if (token) {
             this.$http.get('http://localhost:8000/api/user')
                 .then(
-                    res => console.info(res),
+                    // res => console.info(res),
                 )
                 .catch(
-                    err => console.warn(err)
+                    // err => console.warn(err)
                 );
             return this.$store.state.authorized = true;
         }

@@ -53,9 +53,6 @@ import routes from "../../router/menu";
 })
 export default class AppSidebar {
 
-    mounted() {
-        console.log(this.routes)
-    }
 
     link(route) {
         return route.children ? '' : {name: route.name, activeClass: 'active'} ;

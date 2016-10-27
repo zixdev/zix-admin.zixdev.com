@@ -8,7 +8,7 @@
     import Component from 'vue-class-component'
 
     @Component
-    export default class Name {
+    export default class System {
         created() {
             console.info('index.vue Been Created')
         }

@@ -27,7 +27,7 @@ export default [
             },
             {
                 path: '/system/sites/add',
-                name: 'Sites Add',
+                name: 'Site Add',
                 meta: {
                     auth: true,
                 },
@@ -43,7 +43,7 @@ export default [
             },
             {
                 path: '/system/sites/:id/edit',
-                name: 'system_sites_edit',
+                name: 'Site Edit',
                 meta: {
                     auth: true,
                 },
