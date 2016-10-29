@@ -35,6 +35,12 @@
         }
     })
     export default class Index {
+        created() {
+            this.$on('edit-table', (data) => {
+                console.info('==>', data);
+            });
+        }
+
         get url() {
             return this.$store.state.config.api_url + 'sites';
         }
@@ -64,9 +70,23 @@
                     style: '',
                     filtrable: true
 //                    callback: (data) => console.log(data)
+                },
+                {
+                    id: '__actions',
+                    name: 'Actions',
+                    actions: [
+                        {
+                            id: 'edit-table',
+                            name: '',
+                            icon: 'fa fa-edit',
+                            btnClass: 'btn btn-sm btn-success',
+                        }
+                    ]
                 }
             ]
         }
+
+
 
 
 

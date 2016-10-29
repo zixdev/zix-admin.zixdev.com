@@ -3,15 +3,36 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th v-for="column of columns"  @click="filter(column)" :class="{'filtrable': column.filtrable}">
+                <th
+                    v-for="column of columns"
+                    @click="filter(column)"
+                    :class="{
+                        'filtrable': column.filtrable,
+                        'active': params[1].value.includes(column.id)
+                    }"
+                >
                     {{ column.name }}
+
+                    <i :class="{
+                            'fa fa-sort-asc': !orderAsc,
+                            'fa fa-sort-desc': orderAsc,
+                       }"
+                       v-if="params[1].value.includes(column.id)"
+                    ></i>
+
                 </th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="row of rows">
                 <td v-for="column of columns">
-                    {{ column.callback ? column.callback(row[column.id]) : row[column.id] }}
+                    <div v-if="column.id == '__actions'">
+                        <a v-for="action of column.actions" @click="fireAction(action, row)" :class="action.btnClass">
+                            <i :class="action.icon"></i>
+                            {{ action.name }}
+                        </a>
+                    </div>
+                    <div v-else v-html="column.callback ? column.callback(row[column.id]) : row[column.id]"></div>
                 </td>
             </tr>
             </tbody>
@@ -74,16 +95,23 @@
                 orderAsc: true
             };
         }
-
+        /*
+         * Whe Data table is created we need to load the data from the server.
+         */
         created() {
-            console.log(this.url);
             this.loadData(this.url);
         }
 
+        /*
+         * return Computed data rows.
+         */
         get rows() {
             return this.response.data;
         }
 
+        /*
+         * return Computed data pages for paginate.
+         */
         get pages() {
             if (!this.response.to) {
                 return [];
@@ -104,6 +132,9 @@
             return pagesArray;
         }
 
+        /*
+         * Get url params for filtering the data.
+         */
         param(url) {
             let data = url + (url.includes('?') ? '&' : '?') + this.params.map(param => {
                 return param.name + '=' + param.value + '&';
@@ -112,10 +143,15 @@
             return data.replace(',', '');
         }
 
+        // change the page (paginator)
         changePage(num) {
             this.loadData(this.url + '?page='+num);
         }
 
+
+        /*
+         * Data loader.
+         */
         loadData(url) {
             this.$http.get(this.param(url))
                 .then(response => {
@@ -123,20 +159,36 @@
                 });
         }
 
+        /*
+         * Get next page.
+         */
         next() {
             return this.response.next_page_url ? this.loadData(this.response.next_page_url) : false;
         }
 
+        /*
+         * Get prev page.
+         */
         prev() {
             return this.response.prev_page_url ? this.loadData(this.response.prev_page_url) : false;
         }
 
+        /*
+         * Filter the data 'asc', 'desc'.
+         */
         filter(column) {
             this.params.filter(param => {
                 param.name.match('sort') ? param.value = column.id + '|' + (this.orderAsc ? 'asc': 'desc') : '';
             });
             this.loadData(this.url);
             this.orderAsc = ! this.orderAsc;
+        }
+
+        /*
+         * fire the action to the parent.
+         */
+        fireAction(event, data) {
+            this.$emit(event.id, data);
         }
 
 
@@ -147,6 +199,9 @@
 
         &:hover {
             cursor: pointer;
+        }
+        &.active {
+            color: #000;
         }
     }
 </style>
