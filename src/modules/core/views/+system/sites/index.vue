@@ -48,7 +48,7 @@
             this.$router.push({name: 'Site Edit', params: {id: data.id}});
         }
         TableView(data) {
-
+            this.$router.push({name: 'Site Show', params: {id: data.id}});
         }
         TableDelete(data) {
 

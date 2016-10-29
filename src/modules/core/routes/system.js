@@ -35,11 +35,11 @@ export default [
             },
             {
                 path: '/system/sites/:id',
-                name: 'system_sites_show',
+                name: 'Site Show',
                 meta: {
                     auth: true,
                 },
-                component: lazyLoading('+system/sites/create')
+                component: lazyLoading('+system/sites/show')
             },
             {
                 path: '/system/sites/:id/edit',

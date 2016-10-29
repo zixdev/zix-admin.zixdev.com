@@ -69,41 +69,35 @@
                 }
             }
         }
-        created() {
-            console.info('login.vue Been Created')
-        }
+
         login() {
             this.form.submitting = true;
             this.$http.post(this.$store.state.config.api_url + 'login', this.user)
-                .then(
-                    response => {
-                        let res = response.data.data;
-                        if (res.permissions.includes('full_access') || res.permissions.includes('view_admin')) {
-                            localStorage.setItem('token', res.token);
-                            this.$store.state.token = res.token;
-                            this.$store.state.user = res.user;
-                            this.form.submitted = true;
+                .then(response => {
+                    let res = response.data.data;
+                    if (res.permissions.includes('full_access') || res.permissions.includes('view_admin')) {
+                        localStorage.setItem('token', res.token);
+                        this.$store.state.token = res.token;
+                        this.$store.state.user = res.user;
+                        this.form.submitted = true;
 
-                            setTimeout(() => {
-                                this.$store.state.authorized = true;
-                                this.$router.push({name: 'Dashboard'});
-                            }, 1000);
+                        setTimeout(() => {
+                            this.$store.state.authorized = true;
+                            this.$router.push({name: 'Dashboard'});
+                        }, 1000);
 
-                            return true;
-                        }
-                        this.form.errors = {
-                            message: 'Oops Looks Like you don\'t have access to the admin panel'
-                        };
-                        this.form.submitting = false;
-                        return false;
+                        return true;
                     }
-                )
-                .catch(
-                    error => {
+                    this.form.errors = {
+                        message: 'Oops Looks Like you don\'t have access to the admin panel'
+                    };
+                    this.form.submitting = false;
+                    return false;
+                })
+                .catch(error => {
                         this.form.errors = error.data;
                         this.form.submitting = false;
-                    }
-                );
+                });
         }
     }
 </script>
