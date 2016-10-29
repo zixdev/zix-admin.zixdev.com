@@ -8,8 +8,9 @@
                     @click="filter(column)"
                     :class="{
                         'filtrable': column.filtrable,
-                        'active': params[1].value.includes(column.id)
-                    }"
+                        'active': params[1].value.includes(column.id),
+
+                    } + ' ' + column.trClass"
                 >
                     {{ column.name }}
 
@@ -25,9 +26,13 @@
             </thead>
             <tbody>
             <tr v-for="row of rows">
-                <td v-for="column of columns">
-                    <div v-if="column.id == '__actions'">
-                        <a v-for="action of column.actions" @click="fireAction(action, row)" :class="action.btnClass">
+                <td v-for="column of columns" :class="column.trClass">
+                    <div v-if="column.id == '__actions'" class="btn-toolbar">
+                        <a v-for="action of column.actions"
+                           @click="fireAction(action, row)"
+                           :class="'btn btn-sm ' + action.btnClass"
+                           :title="action.title"
+                        >
                             <i :class="action.icon"></i>
                             {{ action.name }}
                         </a>
@@ -188,6 +193,7 @@
          * fire the action to the parent.
          */
         fireAction(event, data) {
+            console.log(event);
             this.$emit(event.id, data);
         }
 
@@ -204,4 +210,5 @@
             color: #000;
         }
     }
+
 </style>

@@ -47,7 +47,7 @@ export default [
                 meta: {
                     auth: true,
                 },
-                component: lazyLoading('+system/sites/show')
+                component: lazyLoading('+system/sites/create')
             },
         ]
     },

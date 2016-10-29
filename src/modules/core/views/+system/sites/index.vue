@@ -18,6 +18,9 @@
                 <data-table
                     :url="url"
                     :columns="columns"
+                    @table-view="TableView"
+                    @table-edit="TableEdit"
+                    @table-delete="TableDelete"
                 ></data-table>
 
             </div>
@@ -41,6 +44,16 @@
             });
         }
 
+        TableEdit(data) {
+            this.$router.push({name: 'Site Edit', params: {id: data.id}});
+        }
+        TableView(data) {
+
+        }
+        TableDelete(data) {
+
+        }
+
         get url() {
             return this.$store.state.config.api_url + 'sites';
         }
@@ -52,8 +65,7 @@
                     name: 'Id',
                     trClass: '',
                     style: '',
-                    filtrable: true
-//                    callback: (data) =>  data
+                    filtrable: true,
                 },
                 {
                     id: 'name',
@@ -61,25 +73,39 @@
                     trClass: '',
                     style: '',
                     filtrable: true
-//                    callback: (data) => data
                 },
                 {
                     id: 'url',
                     name: 'Url',
-                    trClass: '',
+                    trClass: 'hidden-sm',
                     style: '',
-                    filtrable: true
-//                    callback: (data) => console.log(data)
+                    filtrable: true,
+                    callback: (data) => data.substring(0, 30) +((data.length > 30) ? '...' : '')
                 },
                 {
                     id: '__actions',
-                    name: 'Actions',
+                    name: '',
                     actions: [
                         {
-                            id: 'edit-table',
+                            id: 'table-view',
                             name: '',
+                            title: 'View Site',
+                            icon: 'fa fa-eye',
+                            btnClass: 'btn-warning',
+                        },
+                        {
+                            id: 'table-edit',
+                            name: '',
+                            title: 'Edit Site',
                             icon: 'fa fa-edit',
-                            btnClass: 'btn btn-sm btn-success',
+                            btnClass: 'btn-success',
+                        },
+                        {
+                            id: 'table-delete',
+                            name: '',
+                            title: 'Delete Site',
+                            icon: 'fa fa-trash',
+                            btnClass: 'btn-danger',
                         }
                     ]
                 }
