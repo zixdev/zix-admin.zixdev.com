@@ -7,7 +7,7 @@
                     v-for="column of columns"
                     @click="filter(column)"
                     :class="{
-                        'filtrable': column.filtrable,
+                        'filterable': column.filterable,
                         'active': params[1].value.includes(column.id),
 
                     } + ' ' + column.trClass"
@@ -18,7 +18,7 @@
                             'fa fa-sort-asc': !orderAsc,
                             'fa fa-sort-desc': orderAsc,
                        }"
-                       v-if="params[1].value.includes(column.id)"
+                       v-if="params[1].value.includes(column.id) && column.filterable"
                     ></i>
 
                 </th>
@@ -37,13 +37,14 @@
                             {{ action.name }}
                         </a>
                     </div>
-                    <div v-else v-html="column.callback ? column.callback(row[column.id]) : row[column.id]"></div>
+                    <div v-else v-html="column.callback ? column.callback(row) : row[column.id]"
+                         @click="fireEvent(column.event, row)"></div>
                 </td>
             </tr>
             </tbody>
         </table>
 
-        <ul class="pagination pull-right">
+        <ul class="pagination pull-right" v-if="response.total > perPage">
 
             <li class="paginate_button previous " :class="{'disabled': !response.prev_page_url}" >
                 <a href="javascript:void(0);" @click="prev()">
@@ -195,15 +196,18 @@
          * fire the action to the parent.
          */
         fireAction(event, data) {
-            console.log(event);
             this.$emit(event.id, data);
+        }
+
+        fireEvent(event, data) {
+            event ? this.$emit(event, data) : false;
         }
 
 
     }
 </script>
 <style lang="scss">
-    .filtrable {
+    .filterable {
 
         &:hover {
             cursor: pointer;

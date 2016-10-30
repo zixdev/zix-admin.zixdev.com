@@ -34,14 +34,6 @@ export default [
                 component: lazyLoading('+system/sites/create')
             },
             {
-                path: '/system/sites/:id',
-                name: 'Site Show',
-                meta: {
-                    auth: true,
-                },
-                component: lazyLoading('+system/sites/show')
-            },
-            {
                 path: '/system/sites/:id/edit',
                 name: 'Site Edit',
                 meta: {
@@ -49,6 +41,26 @@ export default [
                 },
                 component: lazyLoading('+system/sites/create')
             },
+
+            /*
+             * Site Ui Routers.
+             */
+            {
+                path: '/system/sites/:id/ui',
+                name: 'Site UI',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+system/site-ui', true)
+            },
+            {
+                path: '/system/sites/:id/ui/add',
+                name: 'Site UI Add',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+system/site-ui/create')
+            }
         ]
     },
 

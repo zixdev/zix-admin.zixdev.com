@@ -21,6 +21,7 @@
                     @table-view="TableView"
                     @table-edit="TableEdit"
                     @table-delete="TableDelete"
+                    @table-ui-view="TableUiView"
                 ></data-table>
 
             </div>
@@ -46,10 +47,13 @@
             this.$router.push({name: 'Site Edit', params: {id: data.id}});
         }
         TableView(data) {
-            this.$router.push({name: 'Site Show', params: {id: data.id}});
+            window.open(data.url)
         }
         TableDelete(data) {
 
+        }
+        TableUiView(data) {
+            this.$router.push({name: 'Site UI', params: {id: data.id}});
         }
 
         get url() {
@@ -61,24 +65,27 @@
                 {
                     id: 'id',
                     name: 'Id',
-                    trClass: '',
-                    style: '',
-                    filtrable: true,
+                    filterable: true,
                 },
                 {
                     id: 'name',
                     name: 'Name',
-                    trClass: '',
-                    style: '',
-                    filtrable: true
+                    filterable: true
+                },
+                {
+                    id: 'ui',
+                    name: 'UI',
+                    filterable: true,
+                    callback: (data) => `<a href="javascript:void(0);">@${data.ui}</a>`,
+                    event: 'table-ui-view'
                 },
                 {
                     id: 'url',
                     name: 'Url',
                     trClass: 'hidden-sm',
                     style: '',
-                    filtrable: true,
-                    callback: (data) => data.substring(0, 30) +((data.length > 30) ? '...' : '')
+                    filterable: true,
+                    callback: (data) => data.url.substring(0, 30) +((data.url.length > 30) ? '...' : '')
                 },
                 {
                     id: '__actions',

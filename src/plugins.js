@@ -3,7 +3,6 @@ import Resource from "vue-resource";
 import Vuex from "vuex";
 import $ from "jquery";
 import VueProgressBar from "vue-progressbar";
-
 /*
  * Vue Resource $http
  */
