@@ -18,10 +18,19 @@ import Component from "vue-class-component";
                 </ol>
             </div>
         </div>
-    `
+    `,
+    events: {
+        '$route': () => {
+            console.log('Route Changed');
+        }
+    }
 })
 export default class AppBreadCrumb {
-
+    created() {
+        this.$watch('$route', () => {
+            this.$Progress.start();
+        })
+    }
 
     get router() {
         return this.$store.state.$router;

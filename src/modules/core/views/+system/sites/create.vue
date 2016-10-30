@@ -96,7 +96,6 @@
             if(this.edit) {
                 this.$http.get(this.$store.state.config.api_url + 'sites/' + this.$route.params.id)
                     .then(response => {
-                        console.log(response);
                         this.site = response.data.data;
                     });
             }
@@ -105,7 +104,6 @@
         save() {
             this.form.submitting = true;
             // if form for create
-
             return this.edit ? this.update() : this.create();
         }
 
@@ -123,7 +121,7 @@
         update() {
             this.$http.put(this.$store.state.config.api_url + 'sites/' + this.$route.params.id, this.site)
                 .then(response => {
-                    this.$router.push({name: 'Site Show', params: {id: response.data.data.id}});
+                    this.$router.push({name: 'Site Show', params: {id: this.$route.params.id}});
                 })
                 .catch(error => {
                     this.form.errors = error.data;

@@ -1,5 +1,5 @@
 import Component from "vue-class-component";
-import routes from "../../router/menu";
+import routes from "../../../../router/menu";
 
 @Component({
     template: `

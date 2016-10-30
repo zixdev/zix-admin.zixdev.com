@@ -1,8 +1,8 @@
 import Component from "vue-class-component";
-import AppFooter from "./components/layouts/AppFooter";
-import AppSidebar from "./components/layouts/AppSidebar";
-import AppHeader from "./components/layouts/AppHeader";
-import AppBreadCrumb from './modules/core/components/breadcrumb/AppBreadCrumb';
+import AppBreadCrumb from "./modules/core/components/layouts/AppBreadCrumb";
+import AppFooter from "./modules/core/components/layouts/AppFooter";
+import AppSidebar from "./modules/core/components/layouts/AppSidebar";
+import AppHeader from "./modules/core/components/layouts/AppHeader";
 
 @Component({
     template: `
@@ -11,10 +11,16 @@ import AppBreadCrumb from './modules/core/components/breadcrumb/AppBreadCrumb';
             <div v-bind:class="{'page-wrapper gray-bg': authorized}">
                 <app-header  v-show="authorized"></app-header>
                 <vue-progress-bar></vue-progress-bar>
-                <app-breadcrumb></app-breadcrumb>
+                <app-bread-crumb  v-show="authorized"></app-bread-crumb>
+                
                 <div v-bind:class="{'row wrapper wrapper-content': authorized, 'zix-background': !authorized}">
-                    
-                    <router-view></router-view>
+                    <transition mode="out-in" 
+                                enter-active-class="fadeIn"
+                                leave-active-class="fadeOut"
+                                appear
+                    >
+                        <router-view class="animated"></router-view>
+                    </transition>
                 </div>
                 
                 <app-footer  v-show="authorized"></app-footer>
@@ -23,7 +29,7 @@ import AppBreadCrumb from './modules/core/components/breadcrumb/AppBreadCrumb';
         </div>
     `,
     components: {
-        AppFooter, AppSidebar, AppHeader, 'app-breadcrumb': AppBreadCrumb
+        AppFooter, AppSidebar, AppHeader, AppBreadCrumb
     },
     style: require('./styles/app.scss'),
 

@@ -158,9 +158,11 @@
          * Data loader.
          */
         loadData(url) {
+            this.$Progress.start();
             this.$http.get(this.param(url))
                 .then(response => {
                     this.response = response.data.data;
+                    this.$Progress.finish();
                 });
         }
 

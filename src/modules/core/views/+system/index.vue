@@ -1,7 +1,14 @@
 <template>
     <div>
-        <router-view></router-view>
+        <transition mode="out-in"
+                    enter-active-class="zoomIn"
+                    leave-active-class="zoomOut"
+                    appear
+        >
+            <router-view class="animated"></router-view>
+        </transition>
     </div>
+
 </template>
 
 <script>

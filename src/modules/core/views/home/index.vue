@@ -9,7 +9,7 @@
     @Component
     export default class Home {
         created() {
-            this.$Progress.start()
+
         }
     }
 
