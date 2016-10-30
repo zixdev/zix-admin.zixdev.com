@@ -49,13 +49,15 @@ export default class App {
         const token = localStorage.getItem('token');
         // If we have a token, consider the user to be signed in.
         if (token) {
-            this.$http.get('http://localhost:8000/api/user')
+            this.$http.get(this.$store.state.config.api_url + 'user')
                 .then(
                     // res => console.info(res),
                 )
-                .catch(
-                    // err => console.warn(err)
-                );
+                .catch(err => {
+                    localStorage.removeItem('token');
+                    this.$router.push({name: 'Login'});
+                    return this.$store.state.authorized = false;
+                });
             return this.$store.state.authorized = true;
         }
         return this.$store.state.authorized = false;

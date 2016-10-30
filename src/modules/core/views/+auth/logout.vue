@@ -23,7 +23,7 @@
 
             setTimeout(() => {
                 this.$router.push({name: 'Login'});
-            }, 1000);
+            }, 500);
 
         }
     }

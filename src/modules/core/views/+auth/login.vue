@@ -81,10 +81,8 @@
                         this.$store.state.user = res.user;
                         this.form.submitted = true;
 
-                        setTimeout(() => {
-                            this.$store.state.authorized = true;
-                            this.$router.push({name: 'Dashboard'});
-                        }, 1000);
+                        this.$store.state.authorized = true;
+                        this.$router.push({name: 'Dashboard'});
 
                         return true;
                     }

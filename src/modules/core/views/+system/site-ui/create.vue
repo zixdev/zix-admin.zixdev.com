@@ -13,7 +13,19 @@
                 <div v-if="form.errors && form.errors.ui" class="alert alert-danger">
                     {{form.errors.ui}}
                 </div>
+                <div class="form-group">
+                    <select class="form-control m-b" @change="updateType" v-model="type">
+                        <option v-for="option in types" :value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                    <span v-if="form.errors && form.errors.type" class="help-block m-b-none text-danger">{{form.errors.type.toString()}}</span>
+                </div>
+
+                <div class="hr-line-dashed"></div>
+
                 <form class="dropzone">
+
                     <div class="fallback">
                         <input name="file" type="file" multiple/>
                     </div>
@@ -33,20 +45,30 @@
             return {
                 site: {},
                 form: {},
-                dropZone: {}
+                dropZone: {},
+                type: 'vue',
+                types: [
+                    { text: 'Vue Js Based Ui', value: 'vue' },
+                    { text: 'Angular Based Ui', value: 'angular' },
+                    { text: 'React Based Ui', value: 'react' }
+                ]
             };
         }
         created() {
             this.$http.get(this.$store.state.config.api_url + 'sites/' + this.$route.params.id)
-                    .then(response => {
-                        this.site = response.data.data;
-                        this.setUpDropZone();
-                    });
+                .then(response => {
+                    this.site = response.data.data;
+                    this.setUpDropZone(this.type);
+                });
         }
 
-        setUpDropZone() {
+        updateType() {
+            this.setUpDropZone(this.type);
+        }
+
+        setUpDropZone(type) {
             this.dropZone = new Dropzone('form.dropzone', {
-                url:  this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/ui',
+                url:  this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/ui?type='+type,
                 dictDefaultMessage: "<strong class='text-center'>Drop your UI zip file here. </strong>",
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
