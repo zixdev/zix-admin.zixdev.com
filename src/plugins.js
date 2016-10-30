@@ -2,21 +2,32 @@ import Vue from "vue";
 import Resource from "vue-resource";
 import Vuex from "vuex";
 import $ from "jquery";
-import Vuetable from "vuetable-2/src/components/Vuetable.vue";
-import VuetablePagination from "vuetable-2/src/components/VuetablePagination.vue";
-import VuetablePaginationDropdown from "vuetable-2/src/components/VuetablePaginationDropdown.vue";
+import VueProgressBar from "vue-progressbar";
+
+/*
+ * Vue Resource $http
+ */
 Vue.use(Resource);
+
+/*
+ * Vuex Lib $store
+ */
 Vue.use(Vuex);
+
+/*
+ * Vue Progress Bar $Progress
+ * http://hilongjw.github.io/vue-progressbar/index.html
+ */
+Vue.use(VueProgressBar, {
+    color: 'rgb(231, 76, 60)',
+    failedColor: 'red',
+    height: '2px'
+});
 
 window['$'] = window['jQuery'] = window['jquery'] = $;
 require('bootstrap-sass');
 require('metismenu');
 
-/*
- * Vue Data Table
- * https://github.com/ratiw/vue-table
- */
-//
-// Vue.component('vuetable', Vuetable);
-// Vue.component('vuetable-pagination', VuetablePagination);
-// Vue.component('vuetable-pagination-dropdown', VuetablePaginationDropdown);
+
+
+

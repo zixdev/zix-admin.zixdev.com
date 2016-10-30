@@ -7,9 +7,9 @@
                     <router-link :to="{name: 'Site Add'}" class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </router-link>
-                    <button class="btn btn-danger" type="button">
-                        <i class="fa fa-trash-o"></i>
-                    </button>
+                    <!--<button class="btn btn-danger" type="button">-->
+                        <!--<i class="fa fa-trash-o"></i>-->
+                    <!--</button>-->
                 </div>
             </div>
 
@@ -39,9 +39,7 @@
     })
     export default class Index {
         created() {
-            this.$on('edit-table', (data) => {
-                console.info('==>', data);
-            });
+            this.$store.state.$route = {name: 'badi'};
         }
 
         TableEdit(data) {
