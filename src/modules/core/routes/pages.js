@@ -33,6 +33,15 @@ export default [
                     auth: true,
                 },
                 component: lazyLoading('+pages/create')
+            },
+
+            {
+                path: '/pages/:id/edit',
+                name: 'Page Edit',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+pages/create')
             }
         ]
     },

@@ -22,6 +22,7 @@
                     @table-edit="TableEdit"
                     @table-delete="TableDelete"
                     @table-ui-view="TableUiView"
+                    @table-config="TableConfig"
                 ></data-table>
 
             </div>
@@ -54,6 +55,9 @@
         }
         TableUiView(data) {
             this.$router.push({name: 'Site UI', params: {id: data.id}});
+        }
+        TableConfig(data) {
+            this.$router.push({name: 'Site Config', params: {id: data.id}});
         }
 
         get url() {
@@ -92,22 +96,25 @@
                     name: '',
                     actions: [
                         {
-                            id: 'table-view',
-                            name: '',
-                            title: 'View Site',
-                            icon: 'fa fa-eye',
-                            btnClass: 'btn-warning',
+                            id: 'table-config',
+                            title: 'Site Config',
+                            icon: 'fa fa-cog',
+                            btnClass: 'btn-default',
                         },
                         {
                             id: 'table-edit',
-                            name: '',
                             title: 'Edit Site',
                             icon: 'fa fa-edit',
                             btnClass: 'btn-success',
                         },
                         {
+                            id: 'table-view',
+                            title: 'View Site',
+                            icon: 'fa fa-eye',
+                            btnClass: 'btn-warning',
+                        },
+                        {
                             id: 'table-delete',
-                            name: '',
                             title: 'Delete Site',
                             icon: 'fa fa-trash',
                             btnClass: 'btn-danger',
@@ -116,13 +123,5 @@
                 }
             ]
         }
-
-
-
-
-
     }
 </script>
-<style>
-
-</style>

@@ -60,7 +60,19 @@ export default [
                     auth: true,
                 },
                 component: lazyLoading('+system/site-ui/create')
-            }
+            },
+
+            /*
+             * Site Config Routers.
+             */
+            {
+                path: '/system/sites/:id/config',
+                name: 'Site Config',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+system/site-config', true)
+            },
         ]
     },
 

@@ -1,0 +1,59 @@
+import Component from 'vue-class-component'
+import tinymce from "tinymce/tinymce";
+import "tinymce/themes/modern/theme";
+import "tinymce/plugins/paste/plugin";
+import "tinymce/plugins/link/plugin";
+import "tinymce/plugins/autoresize/plugin";
+import 'tinymce/skins/lightgray/skin.min.css'
+import 'tinymce/skins/lightgray/content.min.css'
+
+@Component({
+    template: `
+        <textarea
+            id="tinymce"
+            rows="10"
+        >
+        </textarea>        
+    `,
+    props: {
+        content: {
+            required: true,
+            type: String,
+        }
+    },
+    name: 'tinymce-editor'
+})
+export default class TinymceEditor {
+    mounted() {
+        var self = this;
+        // Initialize
+        tinymce.init({
+            selector: '#tinymce',
+            skin: false,
+            plugins: ['paste', 'link', 'autoresize'],
+            setup(editor) {
+
+                editor.on('init', function () {
+                    console.log(self.content);
+                    tinymce.activeEditor.setContent(self.content);
+                });
+                // when typing keyup event
+                editor.on('keyup', function () {
+                    self.$emit('change', tinymce.activeEditor.getContent());
+                });
+            }
+        });
+        /*
+         * We need to watch the content only on the first change.
+         * when data loaded from the server
+         * TODO: need to turn this into event.
+         */
+        let first = true;
+        this.$watch('content', (data) => {
+            if(first) {
+                tinymce.activeEditor.setContent(data);
+                first = false;
+            }
+        })
+    }
+}
