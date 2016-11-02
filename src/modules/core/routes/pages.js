@@ -23,11 +23,11 @@ export default [
                     menu: true,
                     auth: true,
                 },
-                component: lazyLoading('+pages/all')
+                component: lazyLoading('+pages', true)
             },
             {
                 path: '/pages/add',
-                name: 'Add New',
+                name: 'Add Page',
                 meta: {
                     menu: true,
                     auth: true,
@@ -37,7 +37,7 @@ export default [
 
             {
                 path: '/pages/:id/edit',
-                name: 'Page Edit',
+                name: 'Edit Page',
                 meta: {
                     auth: true,
                 },

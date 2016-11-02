@@ -209,6 +209,7 @@
             this.$http.get(this.$store.state.config.api_url + 'pages/' + this.$route.params.id)
                 .then(response => {
                     this.site = response.data.data;
+                    console.log(response.data.data);
                     this.$events.$emit('update-tinycme', response.data.data.content);
                 });
         }

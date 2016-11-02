@@ -8,7 +8,7 @@ export default new Router({
     // scrollBehavior: () => ({ y: 0 }),
     routes: [
 
-        ...menu,
+        ...createRoutesFromMenu(menu),
 
         {
             path: '*',
@@ -16,3 +16,26 @@ export default new Router({
         }
     ]
 })
+
+function createRoutesFromMenu(routes) {
+    let newRoutes = [];
+    routes.filter(route => {
+        return route.children;
+    }).map(route => {
+        return route.children;
+    }).map(_routes => {
+       _routes.map(item => {
+           newRoutes.push(item);
+       })
+    });
+
+    routes.filter(route => {
+        return !route.children;
+    }).map(route => {
+        newRoutes.push(route);
+    });
+
+    return newRoutes;
+}
+
+console.log(createRoutesFromMenu(menu));
