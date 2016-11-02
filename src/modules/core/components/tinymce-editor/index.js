@@ -1,16 +1,16 @@
-import Component from 'vue-class-component'
+import Component from "vue-class-component";
 import tinymce from "tinymce/tinymce";
 import "tinymce/themes/modern/theme";
 import "tinymce/plugins/paste/plugin";
 import "tinymce/plugins/link/plugin";
 import "tinymce/plugins/autoresize/plugin";
-import 'tinymce/skins/lightgray/skin.min.css'
-import 'tinymce/skins/lightgray/content.min.css'
+import "tinymce/skins/lightgray/skin.min.css";
+import "tinymce/skins/lightgray/content.min.css";
 
 @Component({
     template: `
         <textarea
-            id="tinymce"
+            class="tinymce"
             rows="10"
         >
         </textarea>        
@@ -25,17 +25,23 @@ import 'tinymce/skins/lightgray/content.min.css'
 })
 export default class TinymceEditor {
     mounted() {
+        this.$events.$on('update-tinycme', data => {
+            this.createTinyMce(data);
+        });
+    }
+
+    createTinyMce(content) {
+        tinymce.remove();
         var self = this;
         // Initialize
         tinymce.init({
-            selector: '#tinymce',
+            selector: '.tinymce',
             skin: false,
             plugins: ['paste', 'link', 'autoresize'],
             setup(editor) {
 
                 editor.on('init', function () {
-                    console.log(self.content);
-                    tinymce.activeEditor.setContent(self.content);
+                    tinymce.activeEditor.setContent(content);
                 });
                 // when typing keyup event
                 editor.on('keyup', function () {
@@ -43,17 +49,6 @@ export default class TinymceEditor {
                 });
             }
         });
-        /*
-         * We need to watch the content only on the first change.
-         * when data loaded from the server
-         * TODO: need to turn this into event.
-         */
-        let first = true;
-        this.$watch('content', (data) => {
-            if(first) {
-                tinymce.activeEditor.setContent(data);
-                first = false;
-            }
-        })
     }
+
 }

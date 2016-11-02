@@ -139,6 +139,24 @@
             this.site.content = content;
         }
         mounted() {
+            /*
+             * Initialize The Tiny CME Editor.
+             */
+            this.$events.$emit('update-tinycme', '');
+            /*
+             * When the route changes from edit to add
+             * we need to update the page
+             */
+            this.$watch('edit', () => {
+                this.$events.$emit('update-tinycme', '');
+                this.site = {
+                    title: '',
+                    slug: '',
+                    content: '',
+                    sites: []
+                };
+                this.edit ? this.updateEditPage() : false ;
+            });
             /**
              * When form title changes.
              * Slug will be updated.
@@ -154,14 +172,9 @@
                 .then(response => {
                     this.sites = response.data.data;
                 });
-            if(this.edit) {
-                this.$http.get(this.$store.state.config.api_url + 'pages/' + this.$route.params.id)
-                    .then(response => {
-                        this.site = response.data.data;
-                        this.$emit('changeSelected', response.data.data.sites);
-                        this.$emit('update-tiny', 'hoo');
-                    });
-            }
+
+
+            this.edit ? this.updateEditPage() : false ;
         }
 
         save() {
@@ -191,5 +204,15 @@
                     this.form.submitting = false;
                 });
         }
+
+        updateEditPage() {
+            this.$http.get(this.$store.state.config.api_url + 'pages/' + this.$route.params.id)
+                .then(response => {
+                    this.site = response.data.data;
+                    this.$events.$emit('update-tinycme', response.data.data.content);
+                });
+        }
+
+
     }
 </script>

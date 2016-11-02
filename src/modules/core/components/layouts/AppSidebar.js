@@ -27,7 +27,7 @@ import routes from "../../../../router/menu";
                     </div>
                 </li>
                 
-                <router-link v-for="route of routes" tag="li" :to="link(route)" >
+                <li v-for="route of routes">
                     <router-link :to="link(route)">
                          <i :class="'fa ' + route.icon"></i> 
                         <span class="nav-label"> {{route.name}} </span>
@@ -43,7 +43,7 @@ import routes from "../../../../router/menu";
                         </router-link>
 
                     </ul>
-                </router-link>
+                </li>
                     
             </ul>
 

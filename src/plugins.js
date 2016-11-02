@@ -3,6 +3,9 @@ import Resource from "vue-resource";
 import Vuex from "vuex";
 import $ from "jquery";
 import VueProgressBar from "vue-progressbar";
+import VueEvents from "vue-events";
+
+Vue.use(VueEvents);
 /*
  * Vue Resource $http
  */
