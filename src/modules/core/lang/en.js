@@ -41,7 +41,9 @@ export default {
             delete: 'Delete Site',
             ui: {
                 index: 'Site Ui',
-                add: 'Add Site Ui'
+                index_title: 'All Installed UI\'s',
+                add: 'Add Site Ui',
+                add_title: 'Add To {site} New Ui'
             },
             config: {
                 index: 'Site Config'
@@ -57,6 +59,12 @@ export default {
         url: 'Url',
         content: 'Content',
         sites: 'Sites',
+        version: 'Version',
+        status: 'Status',
+        code_size: 'Code Size',
+        assets_size: 'Assets Size',
+        created_at: 'Created At',
+        updated_at: 'Updated At',
         __actions: ' '
     },
     form: {

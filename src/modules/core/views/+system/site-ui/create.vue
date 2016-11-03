@@ -4,7 +4,7 @@
             <div class="ibox-title">
                 <h5>
                     <i class="fa fa-pencil"></i>
-                    Add To '{{ site.name }}' New UI
+                    {{ $t('system.sites.ui.add_title', {site: site.name}) }}
                 </h5>
 
             </div>

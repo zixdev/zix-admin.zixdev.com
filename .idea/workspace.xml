@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cce516b1-c718-4567-8321-ecb6ab64ba1e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lang/index.js" afterPath="$PROJECT_DIR$/src/lang/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/core/lang/en.js" afterPath="$PROJECT_DIR$/src/modules/core/lang/en.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/core/views/+system/sites/create.vue" afterPath="$PROJECT_DIR$/src/modules/core/views/+system/sites/create.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue" afterPath="$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/core/views/+system/site-ui/create.vue" afterPath="$PROJECT_DIR$/src/modules/core/views/+system/site-ui/create.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/core/views/+system/site-ui/index.vue" afterPath="$PROJECT_DIR$/src/modules/core/views/+system/site-ui/index.vue" />
     </list>
     <ignored path="zix-admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,18 +33,50 @@
           <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2286">
-                  <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                <state relative-caret-position="116">
+                  <caret line="4" column="57" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="57" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/site-ui/index.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="116">
+                  <caret line="4" column="59" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="59" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="create.vue" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/create.vue">
+            <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/site-ui/create.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="174">
-                  <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+                  <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/lang/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="116">
+                  <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+                  <folding>
+                    <element signature="e#0#22#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="create.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/create.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="58">
+                  <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
                   <folding />
                 </state>
               </provider>
@@ -52,14 +85,9 @@
           <file leaf-file-name="en.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/modules/core/lang/en.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="570">
-                  <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
-                  <folding>
-                    <marker date="1478188735653" expanded="true" signature="15:1492" ph="{&quot;dashboard&quot;: 'Dashboard'...}" />
-                    <marker date="1478188735653" expanded="true" signature="682:1152" ph="{&quot;index&quot;: 'System'...}" />
-                    <marker date="1478188735653" expanded="true" signature="724:1146" ph="{&quot;index&quot;: 'Sites'...}" />
-                    <marker date="1478188735653" expanded="true" signature="1165:1371" ph="{&quot;id&quot;: 'Id'...}" />
-                  </folding>
+                <state relative-caret-position="686">
+                  <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -74,6 +102,16 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/modules/core/views/+pages/index.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="261">
+                  <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -81,8 +119,8 @@
           <file leaf-file-name="en.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/modules/core/lang/en.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+                <state relative-caret-position="541">
+                  <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -114,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/plugins.js" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/modules/core/lang/index.js" />
-        <option value="$PROJECT_DIR$/src/lang/index.js" />
         <option value="$PROJECT_DIR$/src/modules/core/routes/pages.js" />
         <option value="$PROJECT_DIR$/src/modules/core/views/home/index.vue" />
         <option value="$PROJECT_DIR$/src/modules/core/routes/system.js" />
@@ -135,9 +172,12 @@
         <option value="$PROJECT_DIR$/src/modules/core/components/table/data-table.vue" />
         <option value="$PROJECT_DIR$/src/modules/core/views/+pages/index.vue" />
         <option value="$PROJECT_DIR$/src/modules/core/views/+pages/create.vue" />
-        <option value="$PROJECT_DIR$/src/modules/core/lang/en.js" />
         <option value="$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue" />
+        <option value="$PROJECT_DIR$/src/modules/core/views/+system/site-ui/index.vue" />
+        <option value="$PROJECT_DIR$/src/lang/index.js" />
+        <option value="$PROJECT_DIR$/src/modules/core/lang/en.js" />
         <option value="$PROJECT_DIR$/src/modules/core/views/+system/sites/create.vue" />
+        <option value="$PROJECT_DIR$/src/modules/core/views/+system/site-ui/create.vue" />
       </list>
     </option>
   </component>
@@ -341,7 +381,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
+              <option name="myItemId" value="site-ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -716,18 +756,18 @@
       <workItem from="1478094681811" duration="1437000" />
       <workItem from="1478104437705" duration="83000" />
       <workItem from="1478108569892" duration="8846000" />
-      <workItem from="1478180619099" duration="8017000" />
+      <workItem from="1478180619099" duration="8800000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29739000" />
+    <option name="totallyTimeSpent" value="30522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.104043126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17574124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -783,24 +823,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/modules/core/routes/pages.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="60" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/core/views/+pages/index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -919,16 +941,6 @@
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="e#0#22#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lang/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1167,39 +1179,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+pages/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/core/lang/en.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
-          <folding>
-            <marker date="1478188735653" expanded="true" signature="15:1492" ph="{&quot;dashboard&quot;: 'Dashboard'...}" />
-            <marker date="1478188735653" expanded="true" signature="682:1152" ph="{&quot;index&quot;: 'System'...}" />
-            <marker date="1478188735653" expanded="true" signature="724:1146" ph="{&quot;index&quot;: 'Sites'...}" />
-            <marker date="1478188735653" expanded="true" signature="1165:1371" ph="{&quot;id&quot;: 'Id'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2286">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1212,10 +1195,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/core/lang/en.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lang/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/sites/create.vue">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+pages/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/site-ui/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="59" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/core/views/+system/site-ui/create.vue">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
           <folding />
         </state>
       </provider>
