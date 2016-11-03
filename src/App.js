@@ -6,7 +6,7 @@ import AppHeader from "./modules/core/components/layouts/AppHeader";
 
 @Component({
     template: `
-        <div id="wrapper" >
+        <div id="wrapper" :class="$t('layout')">
             <app-sidebar v-show="authorized"></app-sidebar>
             <div v-bind:class="{'page-wrapper gray-bg': authorized}">
                 <app-header  v-show="authorized"></app-header>
@@ -55,7 +55,7 @@ export default class App {
                 )
                 .catch(err => {
                     localStorage.removeItem('token');
-                    this.$router.push({name: 'auth.login'});
+                    this.$router.push({name: 'auth.logout'});
                     return this.$store.state.authorized = false;
                 });
             return this.$store.state.authorized = true;

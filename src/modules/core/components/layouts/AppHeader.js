@@ -1,5 +1,5 @@
+import Vue from 'vue';
 import Component from "vue-class-component";
-
 @Component({
     template: `
         <div class="row border-bottom">
@@ -13,6 +13,22 @@ import Component from "vue-class-component";
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false">
+                            {{ $t('lang') }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <a @click="changeLang('en')">English</a>
+                            </li>
+                            <li>
+                                <a @click="changeLang('fr')">French</a>
+                            </li>
+                            <li>
+                                <a @click="changeLang('ar')">Arabic</a>
+                            </li>        
+                        </ul>
+                    </li>
                     <li>
                         <router-link :to="{name: 'auth.logout'}"><i class="fa fa-sign-out"></i> {{$t('auth.logout')}}</router-link>
                     </li>
@@ -24,5 +40,12 @@ import Component from "vue-class-component";
     `
 })
 export default class AppHeader {
+    changeLang(lang) {
+        $('#wrapper').fadeOut();
+        setTimeout(() => {
+            Vue.config.lang = lang;
+            $('#wrapper').fadeIn();
+        }, 500);
+    }
 }
 

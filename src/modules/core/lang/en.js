@@ -1,9 +1,11 @@
 export default {
+    layout: ' ',
     dashboard: 'Dashboard',
     search: {
         index: 'Search',
         main: 'Search for something...'
     },
+    lang: 'Language',
     auth: {
         login: 'Login',
         logout: 'Logout',
