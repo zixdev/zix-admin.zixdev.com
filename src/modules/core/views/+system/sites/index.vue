@@ -2,14 +2,11 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>All Available Websites </h5>
+                <h5> {{ $t('system.sites.index_title') }}</h5>
                 <div class="ibox-tools">
-                    <router-link :to="{name: 'Site Add'}" class="btn btn-success">
+                    <router-link :to="{name: 'system.sites.add'}" class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </router-link>
-                    <!--<button class="btn btn-danger" type="button">-->
-                        <!--<i class="fa fa-trash-o"></i>-->
-                    <!--</button>-->
                 </div>
             </div>
 
@@ -40,12 +37,9 @@
         }
     })
     export default class Index {
-        created() {
-            this.$store.state.$route = {name: 'badi'};
-        }
 
         TableEdit(data) {
-            this.$router.push({name: 'Site Edit', params: {id: data.id}});
+            this.$router.push({name: 'system.sites.edit', params: {id: data.id}});
         }
         TableView(data) {
             window.open(data.url)
@@ -54,10 +48,10 @@
 
         }
         TableUiView(data) {
-            this.$router.push({name: 'Site UI', params: {id: data.id}});
+            this.$router.push({name: 'system.sites.ui.index', params: {id: data.id}});
         }
         TableConfig(data) {
-            this.$router.push({name: 'Site Config', params: {id: data.id}});
+            this.$router.push({name: 'system.sites.config.index', params: {id: data.id}});
         }
 
         get url() {
@@ -68,24 +62,20 @@
             return [
                 {
                     id: 'id',
-                    name: 'Id',
                     filterable: true,
                 },
                 {
                     id: 'name',
-                    name: 'Name',
                     filterable: true
                 },
                 {
                     id: 'ui',
-                    name: 'UI',
                     filterable: true,
                     callback: (data) => `<a href="javascript:void(0);">@${data.ui}</a>`,
                     event: 'table-ui-view'
                 },
                 {
                     id: 'url',
-                    name: 'Url',
                     trClass: 'hidden-sm',
                     style: '',
                     filterable: true,
@@ -97,25 +87,25 @@
                     actions: [
                         {
                             id: 'table-config',
-                            title: 'Site Config',
+                            title: this.$t('system.sites.config.index'),
                             icon: 'fa fa-cog',
                             btnClass: 'btn-default',
                         },
                         {
                             id: 'table-edit',
-                            title: 'Edit Site',
+                            title: this.$t('system.sites.edit'),
                             icon: 'fa fa-edit',
                             btnClass: 'btn-success',
                         },
                         {
                             id: 'table-view',
-                            title: 'View Site',
+                            title: this.$t('system.sites.view'),
                             icon: 'fa fa-eye',
                             btnClass: 'btn-warning',
                         },
                         {
                             id: 'table-delete',
-                            title: 'Delete Site',
+                            title: this.$t('system.sites.delete'),
                             icon: 'fa fa-trash',
                             btnClass: 'btn-danger',
                         }

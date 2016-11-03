@@ -3,16 +3,15 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>
-                    <i class="fa fa-pencil"></i> {{ edit ? 'Edit' : 'Add New'}} Site
+                    <i class="fa fa-pencil"></i> {{ edit ? $t('system.sites.edit') : $t('system.sites.add')}}
                 </h5>
-
             </div>
 
             <div class="ibox-content">
                 <form class="form-horizontal" @submit.prevent="save()">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Name:
+                            {{ $t('table.name') }} :
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
@@ -28,7 +27,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Url:
+                            {{ $t('table.url') }} :
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
@@ -44,7 +43,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Ui:
+                            {{ $t('table.ui') }} :
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
@@ -60,12 +59,12 @@
 
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <router-link :to="{name: 'Sites'}"  class="btn btn-white" >
-                                Cancel
+                            <router-link :to="{name: 'system.sites.all'}"  class="btn btn-white" >
+                                {{ $t('form.cancel') }}
                             </router-link>
                             <button :disabled="form.submitting" class="btn btn-primary" type="submit">
                                 <i v-if="form.submitting" class="fa fa-spinner fa-pulse"></i>
-                                {{ edit ? 'Edit' : 'Create'}}
+                                {{ edit ? $t('form.edit') : $t('form.create') }}
                             </button>
                         </div>
                     </div>
@@ -110,7 +109,7 @@
         create() {
             this.$http.post(this.$store.state.config.api_url + 'sites', this.site)
                 .then(response => {
-                    this.$router.push({name: 'Site Show', params: {id: response.data.data.id}});
+                    this.$router.push({name: 'system.sites.all'});
                 })
                 .catch(error => {
                     this.form.errors = error.data;
@@ -121,7 +120,7 @@
         update() {
             this.$http.put(this.$store.state.config.api_url + 'sites/' + this.$route.params.id, this.site)
                 .then(response => {
-                    this.$router.push({name: 'Site Show', params: {id: this.$route.params.id}});
+                    this.$router.push({name: 'system.sites.all'});
                 })
                 .catch(error => {
                     this.form.errors = error.data;

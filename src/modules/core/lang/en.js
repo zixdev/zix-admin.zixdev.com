@@ -33,9 +33,11 @@ export default {
         index: 'System',
         sites: {
             index: 'Sites',
+            index_title: 'All Available Websites',
             all: 'All Sites',
             add: 'Add Sites',
             edit: 'Edit Site',
+            view: 'View Site',
             delete: 'Delete Site',
             ui: {
                 index: 'Site Ui',
@@ -51,6 +53,8 @@ export default {
         name: 'Name',
         title: 'Title',
         slug: 'Slug',
+        ui: 'Ui',
+        url: 'Url',
         content: 'Content',
         sites: 'Sites',
         __actions: ' '
