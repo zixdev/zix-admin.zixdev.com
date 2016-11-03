@@ -1,13 +1,13 @@
 import AuthRoutes from "./auth";
 import SystemRoutes from "./system";
 import PagesRoutes from "./pages";
-import UsersRoutes from "./users";
+import UserRoutes from "./users";
 
 export default [
 
     ...AuthRoutes,
     ...PagesRoutes,
-    ...UsersRoutes,
+    ...UserRoutes,
     ...SystemRoutes
 
 

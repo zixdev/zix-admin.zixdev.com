@@ -37,5 +37,3 @@ function createRoutesFromMenu(routes) {
 
     return newRoutes;
 }
-
-console.log(createRoutesFromMenu(menu));

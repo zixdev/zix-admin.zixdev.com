@@ -30,7 +30,7 @@ import routes from "../../../../router/menu";
                 <li v-for="route of routes">
                     <router-link :to="link(route)">
                          <i :class="'fa ' + route.icon"></i> 
-                        <span class="nav-label"> {{route.name}} </span>
+                        <span class="nav-label"> {{$t(route.name)}} </span>
                         <span v-if="route.children" class="fa arrow"></span>
                     </router-link>
                    
@@ -38,7 +38,7 @@ import routes from "../../../../router/menu";
 
                         <router-link v-for="child of route.children" tag="li" :to="link(child)">
                             <router-link :to="link(child)">
-                                 {{child.name}} 
+                                 {{$t(child.name)}} 
                             </router-link>
                         </router-link>
 

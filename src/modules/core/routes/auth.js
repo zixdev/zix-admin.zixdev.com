@@ -4,7 +4,7 @@ const lazyLoading = (name, index = false) => resolve => require([`../views/${nam
 
 export default [
     {
-        name: 'Dashboard',
+        name: 'dashboard',
         path: '/',
         meta: {
             menu: true,
@@ -14,7 +14,7 @@ export default [
         component: lazyLoading('home', true),
     },
     {
-        name: 'Login',
+        name: 'login',
         path: '/auth/login',
         meta: {
             icon: 'fa-tachometer',
@@ -24,7 +24,7 @@ export default [
     },
 
     {
-        name: 'Logout',
+        name: 'logout',
         path: '/auth/logout',
         meta: {
             icon: 'fa-tachometer',

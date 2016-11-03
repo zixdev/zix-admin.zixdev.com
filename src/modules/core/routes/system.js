@@ -5,7 +5,7 @@ const lazyLoading = (name, index = false) => resolve => require([`../views/${nam
 export default [
     {
         path: '/system',
-        name: 'System',
+        name: 'system.index',
         meta: {
             icon: 'fa-cog',
             menu: true,
@@ -18,7 +18,7 @@ export default [
              */
             {
                 path: '/system/sites',
-                name: 'Sites',
+                name: 'system.sites.index',
                 meta: {
                     menu: true,
                     auth: true,
@@ -27,7 +27,7 @@ export default [
             },
             {
                 path: '/system/sites/add',
-                name: 'Site Add',
+                name: 'system.sites.add',
                 meta: {
                     auth: true,
                 },
@@ -35,7 +35,7 @@ export default [
             },
             {
                 path: '/system/sites/:id/edit',
-                name: 'Site Edit',
+                name: 'system.sites.edit',
                 meta: {
                     auth: true,
                 },
@@ -47,7 +47,7 @@ export default [
              */
             {
                 path: '/system/sites/:id/ui',
-                name: 'Site UI',
+                name: 'system.sites.ui.index',
                 meta: {
                     auth: true,
                 },
@@ -55,7 +55,7 @@ export default [
             },
             {
                 path: '/system/sites/:id/ui/add',
-                name: 'Site UI Add',
+                name: 'system.sites.ui.add',
                 meta: {
                     auth: true,
                 },
@@ -67,7 +67,7 @@ export default [
              */
             {
                 path: '/system/sites/:id/config',
-                name: 'Site Config',
+                name: 'system.sites.config.index',
                 meta: {
                     auth: true,
                 },

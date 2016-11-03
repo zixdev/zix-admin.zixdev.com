@@ -5,7 +5,7 @@ const lazyLoading = (name, index = false) => resolve => require([`../views/${nam
 export default [
     {
         path: '/accounts',
-        name: 'Accounts',
+        name: 'accounts.index',
         meta: {
             icon: 'fa-user',
             menu: true,
@@ -18,7 +18,7 @@ export default [
              */
             {
                 path: '/accounts/',
-                name: 'Users',
+                name: 'accounts.users.index',
                 meta: {
                     menu: true,
                     auth: true,
@@ -27,7 +27,7 @@ export default [
             },
             {
                 path: '/accounts/add',
-                name: 'Add New Account',
+                name: 'accounts.users.add',
                 meta: {
                     auth: true,
                 },
@@ -37,7 +37,7 @@ export default [
 
             {
                 path: '/accounts/roles',
-                name: 'Roles',
+                name: 'accounts.roles.index',
                 meta: {
                     menu: true,
                     auth: true,

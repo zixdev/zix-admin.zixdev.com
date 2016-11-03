@@ -5,7 +5,7 @@ const lazyLoading = (name, index = false) => resolve => require([`../views/${nam
 export default [
     {
         path: '/pages',
-        name: 'Pages',
+        name: 'pages.index',
         meta: {
             icon: 'fa-file-text-o',
             menu: true,
@@ -18,7 +18,7 @@ export default [
              */
             {
                 path: '/pages/',
-                name: 'All Pages',
+                name: 'pages.all',
                 meta: {
                     menu: true,
                     auth: true,
@@ -27,7 +27,7 @@ export default [
             },
             {
                 path: '/pages/add',
-                name: 'Add Page',
+                name: 'pages.add',
                 meta: {
                     menu: true,
                     auth: true,
@@ -37,7 +37,7 @@ export default [
 
             {
                 path: '/pages/:id/edit',
-                name: 'Edit Page',
+                name: 'pages.edit',
                 meta: {
                     auth: true,
                 },
