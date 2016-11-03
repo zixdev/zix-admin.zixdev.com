@@ -3,16 +3,15 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>
-                    <i class="fa fa-pencil"></i> {{ edit ? 'Edit' : 'Add New'}} Page
+                    <i class="fa fa-pencil"></i> {{ edit ? $t('pages.edit') : $t('pages.add') }}
                 </h5>
-
             </div>
 
             <div class="ibox-content">
                 <form class="form-horizontal" @submit.prevent="save()">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Title:
+                            {{ $t('table.title') }} :
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
@@ -28,7 +27,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Slug:
+                            {{ $t('table.slug') }} :
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
@@ -43,7 +42,7 @@
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Sites:
+                            {{ $t('table.sites') }} :
                         </label>
                         <div class="col-sm-10">
                             <multiselect
@@ -65,7 +64,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Content:
+                            {{ $t('table.content') }} :
                         </label>
                         <div class="col-sm-10">
                             <tinymce-editor
@@ -79,12 +78,12 @@
 
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <router-link :to="{name: 'Sites'}" class="btn btn-white">
-                                Cancel
+                            <router-link :to="{name: 'pages.all'}" class="btn btn-white">
+                                {{ $t('form.cancel') }}
                             </router-link>
                             <button :disabled="form.submitting" class="btn btn-primary" type="submit">
                                 <i v-if="form.submitting" class="fa fa-spinner fa-pulse"></i>
-                                {{ edit ? 'Edit' : 'Create'}}
+                                {{ edit ? $t('form.edit') : $t('form.create') }}
                             </button>
                         </div>
                     </div>

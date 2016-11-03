@@ -12,7 +12,7 @@
 
                     } + ' ' + column.trClass"
                 >
-                    {{ column.name }}
+                    {{ $t('table.'+ column.id)}}
 
                     <i :class="{
                             'fa fa-sort-asc': !orderAsc,
@@ -185,6 +185,7 @@
          * Filter the data 'asc', 'desc'.
          */
         filter(column) {
+            if(!column.filterable) return false;
             this.params.filter(param => {
                 param.name.match('sort') ? param.value = column.id + '|' + (this.orderAsc ? 'asc': 'desc') : '';
             });

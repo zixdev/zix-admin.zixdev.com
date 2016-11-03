@@ -1,14 +1,22 @@
 export default {
     dashboard: 'Dashboard',
+    search: {
+        index: 'Search',
+        main: 'Search for something...'
+    },
     auth: {
         login: 'Login',
-        logout: 'Logout'
+        logout: 'Logout',
+        email: 'Email',
+        password: 'Password'
     },
     pages: {
         index: 'Pages',
+        index_title: 'All Available Pages ',
         all: 'All Pages',
         add: 'Add Pages',
         edit: 'Edit Page',
+        view: 'View Page',
         delete: 'Delete Page'
     },
     accounts: {
@@ -37,5 +45,20 @@ export default {
                 index: 'Site Config'
             }
         }
+    },
+    table: {
+        id: 'Id',
+        name: 'Name',
+        title: 'Title',
+        slug: 'Slug',
+        content: 'Content',
+        sites: 'Sites',
+        __actions: ' '
+    },
+    form: {
+        edit: 'Edit',
+        create: 'Create',
+        updated: 'Update',
+        cancel: 'Cancel'
     }
 };

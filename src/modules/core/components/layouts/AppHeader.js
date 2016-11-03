@@ -8,13 +8,13 @@ import Component from "vue-class-component";
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0);"><i class="fa fa-bars"></i> </a>
                     <form role="search" class="navbar-form-custom" method="post" action="#">
                         <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            <input type="text" :placeholder="$t('search.main')" class="form-control" name="top-search" id="top-search">
                         </div>
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <router-link :to="{name: 'Logout'}"><i class="fa fa-sign-out"></i> Log out</router-link>
+                        <router-link :to="{name: 'auth.logout'}"><i class="fa fa-sign-out"></i> {{$t('auth.logout')}}</router-link>
                     </li>
                
                 </ul>

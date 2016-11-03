@@ -5,25 +5,20 @@ import Component from "vue-class-component";
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <h2>
-                    {{router.name}}
+                    {{$t(router.name)}}
                 </h2>
                 <ol class="breadcrumb text-capitalize">
                     <li v-if="router.name != 'Dashboard'">
-                        <router-link :to="{name: 'Dashboard'}">Dashboard</router-link>
+                        <router-link :to="{name: 'Dashboard'}">{{$t('dashboard')}}</router-link>
                     </li>
      
                     <li v-for="crumb in breadcrumbs">
-                        <router-link :to="{name: crumb, params: router.params}">{{crumb}}</router-link>
+                        <router-link :to="{name: crumb, params: router.params}">{{$t(crumb)}}</router-link>
                     </li>
                 </ol>
             </div>
         </div>
-    `,
-    events: {
-        '$route': () => {
-            console.log('Route Changed');
-        }
-    }
+    `
 })
 export default class AppBreadCrumb {
     created() {

@@ -14,7 +14,7 @@ export default [
         component: lazyLoading('home', true),
     },
     {
-        name: 'login',
+        name: 'auth.login',
         path: '/auth/login',
         meta: {
             icon: 'fa-tachometer',
@@ -24,7 +24,7 @@ export default [
     },
 
     {
-        name: 'logout',
+        name: 'auth.logout',
         path: '/auth/logout',
         meta: {
             icon: 'fa-tachometer',

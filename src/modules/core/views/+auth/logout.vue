@@ -22,7 +22,7 @@
             this.$http.get(this.$store.state.config.api_url + 'logout');
 
             setTimeout(() => {
-                this.$router.push({name: 'Login'});
+                this.$router.push({name: 'auth.login'});
             }, 500);
 
         }

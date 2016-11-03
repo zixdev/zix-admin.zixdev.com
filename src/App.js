@@ -55,7 +55,7 @@ export default class App {
                 )
                 .catch(err => {
                     localStorage.removeItem('token');
-                    this.$router.push({name: 'Login'});
+                    this.$router.push({name: 'auth.login'});
                     return this.$store.state.authorized = false;
                 });
             return this.$store.state.authorized = true;

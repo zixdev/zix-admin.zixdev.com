@@ -13,7 +13,7 @@
                         <div v-if="form.errors && form.errors.message" class="alert alert-danger">
                             {{form.errors.message}}
                         </div>
-                        <form v-on:submit.prevent="login()">
+                        <form @submit.prevent="login()">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">
                                     <i class="fa fa-user"></i>
@@ -21,7 +21,7 @@
                                 <input class="form-control"
                                        type="email"
                                        name="name"
-                                       placeholder="Email"
+                                       :placeholder="$t('auth.email')"
                                        v-model="user.email"
                                        required
                                 >
@@ -33,14 +33,14 @@
                                 <input class="form-control"
                                        type="password"
                                        name="password"
-                                       placeholder="Password"
+                                       :placeholder="$t('auth.password')"
                                        v-model="user.password"
                                        required
                                 >
                             </div>
                             <button type="submit" class="btn btn-primary block full-width m-b">
                                 <i v-if="form.submitting" class="fa fa-spinner fa-pulse"></i>
-                                Login
+                                {{$t('auth.login')}}
                             </button>
                         </form>
                     </div>
