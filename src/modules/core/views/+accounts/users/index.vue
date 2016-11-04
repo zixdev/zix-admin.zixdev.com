@@ -15,7 +15,6 @@
                     :columns="columns"
                     @table-view="TableView"
                     @table-edit="TableEdit"
-                    @table-delete="TableDelete"
                 ></data-table>
 
             </div>
@@ -40,9 +39,7 @@
         TableView(data) {
             window.open(data.url)
         }
-        TableDelete(data) {
 
-        }
 
         get url() {
             return this.$store.state.config.api_url + 'users';
@@ -82,12 +79,6 @@
                             title: this.$t('accounts.users.view'),
                             icon: 'fa fa-eye',
                             btnClass: 'btn-warning',
-                        },
-                        {
-                            id: 'table-delete',
-                            title: this.$t('accounts.users.delete'),
-                            icon: 'fa fa-trash',
-                            btnClass: 'btn-danger',
                         }
                     ]
                 }

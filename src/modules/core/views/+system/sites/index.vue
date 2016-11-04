@@ -17,7 +17,6 @@
                     :columns="columns"
                     @table-view="TableView"
                     @table-edit="TableEdit"
-                    @table-delete="TableDelete"
                     @table-ui-view="TableUiView"
                     @table-config="TableConfig"
                 ></data-table>
@@ -43,9 +42,6 @@
         }
         TableView(data) {
             window.open(data.url)
-        }
-        TableDelete(data) {
-
         }
         TableUiView(data) {
             this.$router.push({name: 'system.sites.ui.index', params: {id: data.id}});
@@ -102,12 +98,6 @@
                             title: this.$t('system.sites.view'),
                             icon: 'fa fa-eye',
                             btnClass: 'btn-warning',
-                        },
-                        {
-                            id: 'table-delete',
-                            title: this.$t('system.sites.delete'),
-                            icon: 'fa fa-trash',
-                            btnClass: 'btn-danger',
                         }
                     ]
                 }

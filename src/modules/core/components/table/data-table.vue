@@ -1,48 +1,86 @@
 <template>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th
-                    v-for="column of columns"
-                    @click="filter(column)"
-                    :class="{
+
+    <div class="">
+        <div class="row">
+            <div class="col-sm-4 m-b-xs">
+                <div data-toggle="buttons" class="btn-group">
+                    <button class="btn btn-sm btn-white"
+                            :class="{'active': params[2].value.includes('all')}"
+                            @click="filterAction('all')"
+                    > All
+                    </button>
+                    <button class="btn btn-sm btn-white"
+                            :class="{'active': params[2].value.includes('deleted')}"
+                            @click="filterAction('deleted')"
+                    > Deleted
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th
+                        v-for="column of columns"
+                        @click="filter(column)"
+                        :class="{
                         'filterable': column.filterable,
                         'active': params[1].value.includes(column.id),
 
                     } + ' ' + column.trClass"
-                >
-                    {{ $t('table.'+ column.id)}}
+                    >
+                        {{ $t('table.'+ column.id)}}
 
-                    <i :class="{
+                        <i :class="{
                             'fa fa-sort-asc': !orderAsc,
                             'fa fa-sort-desc': orderAsc,
                        }"
-                       v-if="params[1].value.includes(column.id) && column.filterable"
-                    ></i>
+                           v-if="params[1].value.includes(column.id) && column.filterable"
+                        ></i>
 
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="row of rows">
-                <td v-for="column of columns" :class="column.trClass">
-                    <div v-if="column.id == '__actions'" class="btn-toolbar">
-                        <a v-for="action of column.actions"
-                           @click="fireAction(action, row)"
-                           :class="'btn btn-sm ' + action.btnClass"
-                           :title="action.title"
-                        >
-                            <i :class="action.icon"></i>
-                            {{ action.name }}
-                        </a>
-                    </div>
-                    <div v-else v-html="column.callback ? column.callback(row) : row[column.id]"
-                         @click="fireEvent(column.event, row)"></div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="row of rows">
+                    <td v-for="column of columns" :class="column.trClass">
+                        <div v-if="column.id == '__actions'" class="btn-toolbar">
+                            <a v-for="action of column.actions"
+                               @click="fireAction(action, row)"
+                               :class="'btn btn-sm ' + action.btnClass"
+                               :title="action.title"
+                            >
+                                <i :class="action.icon"></i>
+                                {{ action.name }}
+                            </a>
+
+                            <a v-if="!params[2].value.includes('deleted')"
+                               @click="performAction('delete', row.id)"
+                               class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                            <a v-if="params[2].value.includes('deleted')"
+                               @click="performAction('restore', row.id)"
+                               class="btn btn-sm btn-info">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                            <a v-if="params[2].value.includes('deleted')"
+                               @click="performAction('force-delete', row.id)"
+                               class="btn btn-sm btn-danger">
+                                <i class="fa fa-eraser"></i>
+                            </a>
+
+                        </div>
+                        <div v-else v-html="column.callback ? column.callback(row) : row[column.id]"
+                             @click="fireEvent(column.event, row)"></div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
 
         <ul class="pagination pull-right" v-if="response.total > perPage">
 
@@ -96,7 +134,8 @@
                 offset: 4,// left and right padding from the pagination <span>,just change it to see effects,
                 params: [
                     {name: 'per_page', value: this.perPage},
-                    {name: 'sort', value: ''}
+                    {name: 'sort', value: ''},
+                    {name: 'action', value: 'all'}
                 ],
                 orderAsc: true
             };
@@ -145,8 +184,7 @@
             let data = url + (url.includes('?') ? '&' : '?') + this.params.map(param => {
                 return param.name + '=' + param.value + '&';
             });
-
-            return data.replace(',', '');
+            return data.replace(/,/g, '');
         }
 
         // change the page (paginator)
@@ -193,6 +231,13 @@
             this.orderAsc = ! this.orderAsc;
         }
 
+        filterAction(type) {
+            this.params.filter(param => {
+                param.name.match('action') ? param.value = type : '';
+            });
+            this.loadData(this.url);
+        }
+
         /*
          * fire the action to the parent.
          */
@@ -202,6 +247,12 @@
 
         fireEvent(event, data) {
             event ? this.$emit(event, data) : false;
+        }
+
+
+        performAction(type, id) {
+            this.$http.delete(this.url + '/' + id + '?action=' + type);
+            this.loadData(this.url);
         }
 
 
