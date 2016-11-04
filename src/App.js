@@ -3,6 +3,7 @@ import AppBreadCrumb from "./modules/core/components/layouts/AppBreadCrumb";
 import AppFooter from "./modules/core/components/layouts/AppFooter";
 import AppSidebar from "./modules/core/components/layouts/AppSidebar";
 import AppHeader from "./modules/core/components/layouts/AppHeader";
+import toastr from "toastr";
 
 @Component({
     template: `
@@ -42,7 +43,9 @@ export default class App {
 
     created() {
         this.checkForAuthenticatedUser();
-
+        this.$events.$on('notify', (data) => {
+            this.notify(data);
+        });
     }
 
     checkForAuthenticatedUser() {
@@ -63,4 +66,14 @@ export default class App {
         return this.$store.state.authorized = false;
     }
 
+
+    notify(data) {
+        toastr.options.closeButton = true;
+        toastr.options.escapeHtml = true;
+        toastr.options.progressBar = true;
+
+        toastr.options.rtl = true;
+
+        toastr[data.type](data.message, data.title);
+    }
 }

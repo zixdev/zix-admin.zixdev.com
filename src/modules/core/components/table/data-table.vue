@@ -252,6 +252,11 @@
 
         performAction(type, id) {
             this.$http.delete(this.url + '/' + id + '?action=' + type);
+            this.$events.$emit('notify', {
+                type: this.$t('table.notification.type.'+ type),
+                title: this.$t('table.notification.title.'+ type),
+                message: this.$t('table.notification.message.'+ type)
+            })
             this.loadData(this.url);
         }
 

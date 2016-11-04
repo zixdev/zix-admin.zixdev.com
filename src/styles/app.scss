@@ -8,3 +8,11 @@ $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
 
 @import '~animate.css';
+@import "~toastr/build/toastr.css";
+
+
+#toast-container > .toast-info, .toast-success, .toast-warning, .toast-error {
+    &:before {
+        content: " " !important;
+    }
+}

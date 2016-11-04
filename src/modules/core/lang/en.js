@@ -75,7 +75,24 @@ export default {
         email: 'Email',
         password: 'Password',
         password_confirmation: 'Password Confirmation',
-        __actions: ' '
+        __actions: ' ',
+        notification: {
+            type: {
+                delete: 'success',
+                restore: 'info',
+                'force-delete': 'warning'
+            },
+            title: {
+                delete: 'Success',
+                restore: 'Info',
+                'force-delete': 'Warning'
+            },
+            message: {
+                delete: 'Your Data Was Successfully Removed',
+                restore: 'Your Data Was Successfully Restored',
+                'force-delete': 'Your Data Was Successfully permanently Removed'
+            }
+        }
     },
     form: {
         edit: 'Edit',

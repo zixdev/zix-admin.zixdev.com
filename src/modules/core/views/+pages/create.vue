@@ -185,7 +185,7 @@
         create() {
             this.$http.post(this.$store.state.config.api_url + 'pages', this.site)
                 .then(response => {
-                    this.$router.push({name: 'All Pages'})
+                    this.$router.push({name: 'pages.all'})
                 })
                 .catch(error => {
                     this.form.errors = error.data;
@@ -196,7 +196,12 @@
         update() {
             this.$http.put(this.$store.state.config.api_url + 'pages/' + this.$route.params.id, this.site)
                 .then(response => {
-                    this.$router.push({name: 'All Pages'})
+                    this.$router.push({name: 'pages.all'})
+                    this.$events.$emit('notify', {
+                        type: 'info',
+                        title: 'Success !',
+                        message: 'Your Page Was Updated Successfully!'
+                    })
                 })
                 .catch(error => {
                     this.form.errors = error.data;

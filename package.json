@@ -20,6 +20,7 @@
     "jquery": "^3.1.1",
     "metismenu": "^2.5.2",
     "tinymce": "^4.4.3",
+    "toastr": "^2.1.2",
     "vue": "^2.0.1",
     "vue-class-component": "^4.0.1",
     "vue-events": "^1.0.0",
