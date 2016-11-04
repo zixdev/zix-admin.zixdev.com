@@ -23,7 +23,7 @@ export default [
                     menu: true,
                     auth: true,
                 },
-                component: lazyLoading('+pages/all')
+                component: lazyLoading('+accounts/users', true)
             },
             {
                 path: '/accounts/add',
@@ -31,7 +31,16 @@ export default [
                 meta: {
                     auth: true,
                 },
-                component: lazyLoading('+pages/all')
+                component: lazyLoading('+accounts/users/create')
+            },
+
+            {
+                path: '/accounts/:id/edit',
+                name: 'accounts.users.edit',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+accounts/users/create')
             },
 
 

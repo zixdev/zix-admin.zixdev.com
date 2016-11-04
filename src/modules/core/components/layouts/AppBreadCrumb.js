@@ -8,8 +8,8 @@ import Component from "vue-class-component";
                     {{$t(router.name)}}
                 </h2>
                 <ol class="breadcrumb text-capitalize">
-                    <li v-if="router.name != 'Dashboard'">
-                        <router-link :to="{name: 'Dashboard'}">{{$t('dashboard')}}</router-link>
+                    <li v-if="router.name != 'dashboard'">
+                        <router-link :to="{name: 'dashboard'}">{{$t('dashboard')}}</router-link>
                     </li>
      
                     <li v-for="crumb in breadcrumbs">

@@ -25,7 +25,11 @@ export default {
         index: 'Accounts',
         users: {
             index: 'Users',
-            add: 'Add New User'
+            index_title: 'All Registered Accounts',
+            add: 'Add New User',
+            edit: 'Edit User Account',
+            view: 'View User Info',
+            delete: 'Delete User Account',
         },
         roles: {
             index: 'Roles'
@@ -67,6 +71,10 @@ export default {
         assets_size: 'Assets Size',
         created_at: 'Created At',
         updated_at: 'Updated At',
+        username: 'Username',
+        email: 'Email',
+        password: 'Password',
+        password_confirmation: 'Password Confirmation',
         __actions: ' '
     },
     form: {
