@@ -17,7 +17,9 @@
                 </div>
             </div>
         </div>
-
+        <div class="loading text-center" v-show="loading">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -77,9 +79,17 @@
                              @click="fireEvent(column.event, row)"></div>
                     </td>
                 </tr>
+                <tr v-if="!rows || !rows.length">
+                    <td :colspan="columns.length" class="text-center">
+                        <h2>
+                            {{ $t('table.no_data') }}
+                        </h2>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
+
 
 
         <ul class="pagination pull-right" v-if="response.total > perPage">
@@ -135,9 +145,10 @@
                 params: [
                     {name: 'per_page', value: this.perPage},
                     {name: 'sort', value: ''},
-                    {name: 'action', value: 'all'}
+                    {name: 'filter', value: 'all'}
                 ],
-                orderAsc: true
+                orderAsc: true,
+                loading: false
             };
         }
         /*
@@ -197,11 +208,13 @@
          * Data loader.
          */
         loadData(url) {
+            this.loading = true;
             this.$Progress.start();
             this.$http.get(this.param(url))
                 .then(response => {
                     this.response = response.data.data;
                     this.$Progress.finish();
+                    this.loading = false;
                 });
         }
 
@@ -233,7 +246,7 @@
 
         filterAction(type) {
             this.params.filter(param => {
-                param.name.match('action') ? param.value = type : '';
+                param.name.match('filter') ? param.value = type : '';
             });
             this.loadData(this.url);
         }
@@ -273,5 +286,16 @@
             color: #000;
         }
     }
+
+    .loading {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        i {
+            position: absolute;
+            top: 20%;
+        }
+    }
+
 
 </style>

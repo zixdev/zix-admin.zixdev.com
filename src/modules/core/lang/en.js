@@ -54,8 +54,22 @@ export default {
             config: {
                 index: 'Site Config'
             }
-        }
+        },
+        forms: {
+            index: 'Forms',
+            index_title: 'All Available Forms',
+            all: 'All Forms',
+            add: 'Add Forms',
+            edit: 'Edit Form',
+            view: 'View Form',
+            delete: 'Form Site',
+        },
     },
+
+    forms: {
+        index: 'Forms'
+    },
+
     table: {
         id: 'Id',
         name: 'Name',
@@ -75,12 +89,14 @@ export default {
         email: 'Email',
         password: 'Password',
         password_confirmation: 'Password Confirmation',
+        submit_text: 'Submit Text',
+        no_data: 'No Data Found',
         __actions: ' ',
         notification: {
             type: {
-                delete: 'success',
-                restore: 'info',
-                'force-delete': 'warning'
+                delete: 'warning',
+                restore: 'success',
+                'force-delete': 'error'
             },
             title: {
                 delete: 'Success',
@@ -90,7 +106,7 @@ export default {
             message: {
                 delete: 'Your Data Was Successfully Removed',
                 restore: 'Your Data Was Successfully Restored',
-                'force-delete': 'Your Data Was Successfully permanently Removed'
+                'force-delete': 'Your Data Was Permanently Removed'
             }
         }
     },
