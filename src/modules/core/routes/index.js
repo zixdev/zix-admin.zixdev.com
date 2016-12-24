@@ -5,12 +5,9 @@ import FormsRoutes from "./forms";
 import UserRoutes from "./users";
 
 export default [
-
-    ...AuthRoutes,
-    ...PagesRoutes,
-    ...FormsRoutes,
-    ...UserRoutes,
-    ...SystemRoutes
-
-
+    AuthRoutes,
+    PagesRoutes,
+    FormsRoutes,
+    UserRoutes,
+    SystemRoutes
 ];

@@ -16,7 +16,7 @@ import routes from "../../../../router/menu";
                                 </strong>
                             </span>
                             <span class="text-muted text-xs block">
-                                CEO Founder
+                                CEO Founder {{ routes.length}}
                             </span>
                         </span>
                         </a>
@@ -44,7 +44,6 @@ import routes from "../../../../router/menu";
 
                     </ul>
                 </li>
-                    
             </ul>
 
         </div>
@@ -59,7 +58,7 @@ export default class AppSidebar {
     }
 
     get routes() {
-        return routes.filter(route => route.meta.menu).map(route => {
+        return this.$store.state.menu.filter(route => route.meta.menu).map(route => {
             return {
                 path: route.path,
                 name: route.name,

@@ -4,12 +4,16 @@ const store = new Vuex.Store({
     state: {
         authorized: false,
         config: Config,
-        $router: {}
+        $router: {},
+        menu: []
     },
 
     mutations: {
         updateRouter(state, data) {
             state.$router = data;
+        },
+        updateMenu(state, menu) {
+            state.menu = menu;
         }
     }
 });
