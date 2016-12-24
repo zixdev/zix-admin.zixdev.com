@@ -15,6 +15,7 @@
                     :columns="columns"
                     @table-view="TableView"
                     @table-edit="TableEdit"
+                    @table-fields="TableFields"
                 ></data-table>
 
             </div>
@@ -22,7 +23,7 @@
     </div>
 </template>
 
-<script>
+<script type="text/babel">
     import Component from 'vue-class-component'
     import DataTable from '../../../components/table/data-table.vue'
 
@@ -38,6 +39,9 @@
         }
         TableView(data) {
             window.open(data.url)
+        }
+        TableFields(data) {
+            this.$router.push({name: 'system.forms.fields.index', params: {slug: data.slug}});
         }
 
         get url() {
@@ -62,6 +66,12 @@
                 {
                     id: '__actions',
                     actions: [
+                        {
+                            id: 'table-fields',
+                            title: this.$t('system.forms.fields.index'),
+                            icon: 'fa fa-cog',
+                            btnClass: 'btn-default',
+                        },
                         {
                             id: 'table-edit',
                             title: this.$t('system.forms.edit'),

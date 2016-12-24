@@ -102,7 +102,15 @@ export default [
                     auth: true,
                 },
                 component: lazyLoading('+system/forms/create')
-            }
+            },
+            {
+                path: '/system/:slug/fields',
+                name: 'system.forms.fields.index',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+system/forms/fields')
+            },
         ]
     },
 

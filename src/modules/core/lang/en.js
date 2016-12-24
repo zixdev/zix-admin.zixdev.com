@@ -63,6 +63,9 @@ export default {
             edit: 'Edit Form',
             view: 'View Form',
             delete: 'Form Site',
+            fields: {
+                index: 'Manage Form Fields'
+            }
         },
     },
 

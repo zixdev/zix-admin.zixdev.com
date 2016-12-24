@@ -33,6 +33,7 @@
                             <input class="form-control" type="text"
                                    v-model="page.slug"
                                    required
+                                   disabled
                                    minlength="3"
                                    maxlength="255"
                             >
@@ -75,7 +76,7 @@
     </div>
 </template>
 
-<script>
+<script type="text/babel">
     import Component from 'vue-class-component'
     import Multiselect from 'vue-multiselect'
 
