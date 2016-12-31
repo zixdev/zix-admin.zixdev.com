@@ -5,7 +5,7 @@
                 | hoho
 
             alert(type='danger') {{ home }}
-                
+
 
 
 </template>
