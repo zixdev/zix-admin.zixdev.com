@@ -9,8 +9,8 @@ li(:class="{'active': show}")
 		i(:class="'fa ' + route.icon")
 		span.nav-label {{$t(route.name)}}
 	ul.nav.nav-second-level(v-if='route.children && route.children.length', :class='classes')
-		router-link(v-for='child of route.children', tag='li', :to='link(child)')
-			router-link(:to='link(child)')
+		router-link(v-for='child of route.children', tag='li', :to='child.path')
+			router-link(:to='child.path')
 				| {{$t(child.name)}}
 
 

@@ -15,7 +15,7 @@ const FormRoutes = [
         children: []
     },
     {
-        path: '/forms/id',
+        path: '/forms/:id',
         name: 'forms.view',
         meta: {
             auth: false,

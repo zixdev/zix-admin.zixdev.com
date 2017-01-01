@@ -13,6 +13,7 @@
                   | CEO Founder {{ routes.length}}
           .logo-element
             | Zix+
+
         side-bar-links(v-for='route of routes', :route='route')
 
 
@@ -29,12 +30,6 @@
     }
   })
   export default class AppSidebar {
-
-
-      link(route) {
-          return route.children ? '' : {name: route.name, activeClass: 'active'} ;
-      }
-
       get routes() {
           return this.$store.state.menu.filter(route => route.meta.menu).map(route => {
               return {
