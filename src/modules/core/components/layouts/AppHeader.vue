@@ -8,16 +8,13 @@
           .form-group
             input#top-search.form-control(type='text', :placeholder="$t('search.main')", name='top-search')
       ul.nav.navbar-top-links.navbar-right
-        li.dropdown
-          a.dropdown-toggle.count-info(data-toggle='dropdown', href='#', aria-expanded='false')
-            | {{ $t('lang') }}
-          ul.dropdown-menu.dropdown-messages
-            li
-              a(@click="changeLang('en')") English
-            li
-              a(@click="changeLang('fr')") French
-            li
-              a(@click="changeLang('ar')") Arabic
+        dropdown(:text="$t('lang')")
+          li
+            a(@click="changeLang('en')") English
+          li
+            a(@click="changeLang('fr')") French
+          li
+            a(@click="changeLang('ar')") Arabic
 
         li
           router-link(:to="{name: 'auth.logout'}")
