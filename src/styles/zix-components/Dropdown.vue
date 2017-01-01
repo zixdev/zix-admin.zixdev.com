@@ -37,9 +37,12 @@ li(:class="classes")
     }
 
     mounted() {
-      $node(this.$el).onBlur(event => {
-        this.show = false;
-      })
+      $node(this.$el)
+        .onBlur(event => {
+          this.show = false;
+        })
+        .findChildren('ul').on('click', 'li>a', e => { this.show = false })
+
 
       document.body.onkeyup = event => {
           event.keyCode == 27 ? this.show = false : false;
