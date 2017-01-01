@@ -1,8 +1,8 @@
 <template lang="jade">
   .row.border-bottom
-    nav.navbar.navbar-static-top.white-bg(role='navigation', style='margin-bottom: 0')
+    nav.navbar.navbar-static-top.white-bg(role='navigation')
       .navbar-header
-        a.navbar-minimalize.minimalize-styl-2.btn.btn-primary(href='javascript:void(0);')
+        button.btn.btn-primary(@click="toggleSidebar")
           i.fa.fa-bars
         form.navbar-form-custom(role='search', method='post', action='#')
           .form-group
@@ -21,9 +21,6 @@
             i.fa.fa-sign-out
             |  {{$t('auth.logout')}}
 
-
-
-
 </template>
 
 <script type="text/bable">
@@ -32,13 +29,33 @@
 
     @Component
     export default class AppHeader {
+        data() {
+          return {
+            sideBarActive: true
+          }
+        }
         changeLang(lang) {
-            $('#wrapper').fadeOut();
-            setTimeout(() => {
-                Vue.config.lang = lang;
-                $('#wrapper').fadeIn();
-            }, 500);
+            Vue.config.lang = lang;
+        }
+
+        toggleSidebar() {
+            //body.mini-navbar
+            this.sideBarActive = ! this.sideBarActive;
+            this.sideBarActive ? document.body.className = ''
+                               : document.body.className = 'mini-navbar';
         }
     }
 
 </script>
+
+<style lang="scss" scooped>
+  nav.navbar {
+    margin-bottom: 0;
+    button.btn-primary {
+      padding: 4px 12px;
+      margin: 14px 5px 5px 20px;
+      font-size: 14px;
+      float: left;
+    }
+  }
+</style>
