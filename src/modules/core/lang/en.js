@@ -70,7 +70,8 @@ export default {
     },
 
     forms: {
-        index: 'Forms'
+        index: 'Forms',
+        view: 'View Form Responses'
     },
 
     table: {
@@ -94,6 +95,9 @@ export default {
         password_confirmation: 'Password Confirmation',
         submit_text: 'Submit Text',
         no_data: 'No Data Found',
+        viewed: 'Viewed',
+        responded: 'Responded',
+        identifier: 'Identifier',
         __actions: ' ',
         notification: {
             type: {

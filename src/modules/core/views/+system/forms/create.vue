@@ -20,7 +20,7 @@
                                    minlength="3"
                                    maxlength="255"
                             >
-                            <span v-if="form.errors && form.errors.title" class="help-block m-b-none text-danger">{{form.errors.title.toString()}}</span>
+                            <span v-if="getError('title')" class="help-block m-b-none text-danger">{{ getError('title') }}</span>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -37,7 +37,7 @@
                                    minlength="3"
                                    maxlength="255"
                             >
-                            <span v-if="form.errors && form.errors.slug" class="help-block m-b-none text-danger">{{form.errors.slug.toString()}}</span>
+                            <span v-if="getError('slug')" class="help-block m-b-none text-danger">{{ getError('slug') }}</span>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -53,7 +53,33 @@
                                    minlength="3"
                                    maxlength="255"
                             >
-                            <span v-if="form.errors && form.errors.submit_text" class="help-block m-b-none text-danger">{{form.errors.submit_text.toString()}}</span>
+                            <span v-if="getError('submit_text')" class="help-block m-b-none text-danger">{{ getError('submit_text') }}</span>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{ $t('table.notify') }} :
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" v-model="page.notify">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group" v-if="page.notify">
+                        <label class="col-sm-2 control-label">
+                            {{ $t('table.notify_email') }} :
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text"
+                                   v-model="page.notify_email"
+                                   required
+                                   minlength="3"
+                                   maxlength="255"
+                            >
+                            <span v-if="getError('notify_email')" class="help-block m-b-none text-danger">{{ getError('notify_email') }}</span>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -89,7 +115,9 @@
                     title: '',
                     slug: '',
                     submit_text: '',
-                    sites: []
+                    sites: [],
+                    notify: false,
+                    notify_email: ''
                 },
                 form: {
                     errors: {}
@@ -102,14 +130,6 @@
             return this.$route.params.id ? true : false;
         }
 
-        updateSelected(site) {
-            this.page.sites.push(site.id);
-        }
-        removeSelected(site) {
-            this.page.sites = this.page.sites.filter((id) => {
-                return id !== site.id;
-            });
-        }
 
 
         mounted() {
@@ -137,10 +157,10 @@
             /*
              * Load The Sites Data
              */
-             this.$http.get(this.$store.state.config.api_url + 'sites')
-                .then(response => {
-                    this.sites = response.data.data;
-                });
+             // this.$http.get(this.$store.state.config.api_url + 'sites')
+             //    .then(response => {
+             //        this.sites = response.data.data;
+             //    });
 
 
             this.edit ? this.updateEditPage() : false ;
@@ -155,7 +175,7 @@
         create() {
             this.$http.post(this.$store.state.config.api_url + 'forms', this.page)
                 .then(response => {
-                    this.$router.push({name: 'system.forms.index'})
+                    this.$router.push({name: 'system.forms.fields.index', params: {slug: this.page.slug}});
                 })
                 .catch(error => {
                     this.form.errors = error.data;
@@ -182,10 +202,13 @@
         updateEditPage() {
             this.$http.get(this.$store.state.config.api_url + 'forms/' + this.$route.params.id)
                 .then(response => {
+                    console.info(response.data.data)
                     this.page = response.data.data;
                 });
         }
-
+        getError(name) {
+            return (this.form.errors && this.form.errors[name]) ? this.form.errors[name].toString() : false;
+        }
 
     }
 </script>
