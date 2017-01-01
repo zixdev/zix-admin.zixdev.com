@@ -32,11 +32,3 @@ Vue.use(VueProgressBar, {
     failedColor: 'red',
     height: '2px'
 });
-
-window['$'] = window['jQuery'] = window['jquery'] = $;
-require('bootstrap-sass');
-require('metismenu');
-
-
-
-

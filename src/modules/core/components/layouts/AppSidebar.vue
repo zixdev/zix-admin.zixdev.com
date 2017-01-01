@@ -1,7 +1,7 @@
 <template lang="jade">
   nav.navbar-default.navbar-static-side(role='navigation')
     .sidebar-collapse
-      ul#side-menu.nav.metismenu
+      ul.nav.metismenu()
         li.nav-header
           .profile-element
             a(href='javascript:void(0);')
@@ -13,23 +13,21 @@
                   | CEO Founder {{ routes.length}}
           .logo-element
             | Zix+
-        li(v-for='route of routes')
-          router-link(:to='link(route)')
-            i(:class="'fa ' + route.icon")
-            span.nav-label  {{$t(route.name)}}
-            span.fa.arrow(v-if='route.children')
-          ul.nav.nav-second-level.collapse(v-if='route.children')
-            router-link(v-for='child of route.children', tag='li', :to='link(child)')
-              router-link(:to='link(child)')
-                | {{$t(child.name)}}
+        side-bar-links(v-for='route of routes', :route='route')
+
 
 </template>
 
 <script type="text/bable">
   import Component from "vue-class-component";
   import routes from "../../../../router/menu";
+  import SideBarLinks from './SideBarLinks'
 
-  @Component
+  @Component({
+    components: {
+      SideBarLinks
+    }
+  })
   export default class AppSidebar {
 
 

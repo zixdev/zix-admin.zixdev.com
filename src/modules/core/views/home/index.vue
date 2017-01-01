@@ -1,10 +1,11 @@
 <template lang="jade">
     .row
         .col-md-12
-            alert(type='success', dismissable='')
-                | hoho
-
-            alert(type='danger') {{ home }}
+            collapse(text="Test")
+              li
+                a hoho
+              li
+                a haha
 
 
 
@@ -12,17 +13,16 @@
 <script type="text/babel">
     import Component from 'vue-class-component'
     import Vue from "vue";
-    import { alert } from 'vue-strap';
 
-    @Component({
-        components: {
-            alert
-        }
-    })
+
+    @Component
     export default class Home {
+        data() {
+          return {
+            showAlert: true
+          }
+        }
         created() {
-            console.log()
-            console.info('hoho')
 
 
         }
