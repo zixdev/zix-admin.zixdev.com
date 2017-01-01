@@ -1,12 +1,12 @@
 <template lang="jade">
 
-  #wrapper(:class="$t('layout')")
+  main(:class="$t('layout')")
     app-sidebar(v-show='authorized')
     div(v-bind:class="{'page-wrapper gray-bg': authorized}")
       app-header(v-show='authorized')
       vue-progress-bar
       app-bread-crumb(v-show='authorized')
-      div(v-bind:class="{'row wrapper wrapper-content': authorized, 'zix-background': !authorized}")
+      div(v-bind:class="{'wrapper wrapper-content': authorized, 'zix-background': !authorized}")
         transition(mode='out-in', enter-active-class='fadeIn', leave-active-class='fadeOut', appear='')
           router-view.animated
       app-footer(v-show='authorized')

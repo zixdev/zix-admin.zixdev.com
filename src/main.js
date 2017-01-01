@@ -1,10 +1,12 @@
 import Vue from "vue";
 import "./plugins";
-import "./tmp-ux";
 import App from "./App.vue";
 import router from "./router";
 import Guard from "./modules/core/guard";
 import store from './store';
+
+// import zexus components
+import "./styles/zix-components";
 
 
 /**
