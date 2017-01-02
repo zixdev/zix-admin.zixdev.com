@@ -2,7 +2,7 @@
   div
     ul.nav.nav-tabs(role='tablist')
       li(v-for='tab of tabs', :class="{'active': tab.show}")
-        a(@click='change(tab)') {{ tab.header }}
+        a(@click='change(tab)', v-html="tab.header")
     div.tab-content(ref='tabContent')
       slot
 </template>

@@ -31,3 +31,9 @@
 
   }
 </script>
+
+<style scooped>
+  .tab-pane {
+    padding-top: 15px;
+  }
+</style>
