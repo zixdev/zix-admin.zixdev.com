@@ -1,46 +1,37 @@
-<template>
-    <div class="col-lg-12">
-        <div class="tabs-container">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a data-toggle="tab" href="#tab-general" aria-expanded="true">
-                        <i class="fa fa-laptop"></i>
-                    </a>
-                </li>
-                <li class="">
-                    <a data-toggle="tab" href="#tab-social" aria-expanded="false">
-                        <i class="fa fa-connectdevelop"></i>
-                    </a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div id="tab-general" class="tab-pane active">
-                    <div class="panel-body">
-                        <strong>General</strong>
+<template lang="jade">
+  .col-lg-12
+    .ibox
+      .ibox-content
+        tabs
+          tab(header='<i class="fa fa-book"></i> General', :active='true')
+            general
+          tab(header='<i class="fa fa-lock"></i> Security')
+            security
+          tab(header='<i class="fa fa-search"></i> Search Engine Optimization')
+            div
+            | Search Engine Optimization
+          tab(header='<i class="fa fa-envelope"></i> Email Settings')
+            email-settings
+          tab(header='<i class="fa fa-share-alt"></i> Social API')
+            social-api
+          tab(header='<i class="fa fa-key"></i> Maintenance')
+            maintenance
 
-
-                    </div>
-                </div>
-                <div id="tab-social" class="tab-pane">
-                    <div class="panel-body">
-                        <strong>Social API Keys</strong>
-
-                        <h2>Facebook Api</h2>
-                        <hr>
-
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
 </template>
 
 <script>
     import Component from 'vue-class-component'
+    import General from './components/general'
+    import Security from './components/security'
+    import EmailSettings from './components/email-settings'
+    import SocialApi from './components/social-api'
+    import Maintenance from './components/maintenance'
 
-    @Component
+    @Component({
+      components: {
+        General, Security, EmailSettings, SocialApi, Maintenance
+      }
+    })
     export default class Index {
         data() {
             return {
@@ -48,11 +39,11 @@
             };
         }
         created() {
-            this.$http.get(this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/config')
-                .then(response => {
-                    console.log(response)
-                    this.site_config = response.data.data;
-                });
+            // this.$http.get(this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/config')
+            //     .then(response => {
+            //         console.log(response)
+            //         this.site_config = response.data.data;
+            //     });
         }
 
         config(name) {

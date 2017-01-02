@@ -1,11 +1,10 @@
 <template lang="jade">
     .row
         .col-md-12
-            collapse(text="Test")
-              li
-                a hoho
-              li
-                a haha
+            tabs
+              tab(header='Config', :active='true')
+                div Some Content ?
+              tab(header='Setting') Some Setting  ?
 
 
 

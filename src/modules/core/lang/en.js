@@ -121,6 +121,38 @@ export default {
         edit: 'Edit',
         create: 'Create',
         updated: 'Update',
-        cancel: 'Cancel'
-    }
+        cancel: 'Cancel',
+        save: 'Save',
+    },
+    config: {
+      name: 'Name',
+      title: 'Title',
+      tagline: 'Tagline',
+      keywords: 'Keywords',
+      description: 'Description',
+      email: 'Email',
+      phone: 'Phone',
+      fix: 'Fix',
+      address: 'Address',
+      public_key: 'Public Key',
+      private_key: 'Private Key',
+      email_system: 'Email System',
+      enabled: 'Enabled',
+
+      app_secret: 'App Secret',
+      app_id: 'App ID',
+      maintenance_message: 'Maintenance Message',
+      maintenance_type: 'Maintenance type',
+
+      smtp: {
+        host: 'Host',
+        port: 'Port',
+        username: 'Username',
+        password: 'Password',
+      }
+    },
+
+    // other
+    'Contact Us': 'Contact Us'
+
 };
