@@ -1,6 +1,6 @@
 <template>
   <!-- Nav tabs -->
-  <ul class="nav nav-{{navStyle}}" role="tablist">
+  <ul class="nav nav-tabs" role="tablist">
     <template v-for="t in headers">
       <li v-if="!t._tabgroup" :class="{active:t.active, disabled:t.disabled}" @click.prevent="select(t)">
         <a href="#"><slot name="header">{{{t.header}}}</slot></a>

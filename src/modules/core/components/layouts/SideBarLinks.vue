@@ -53,7 +53,7 @@ li(:class="{'active': show}")
 			setTimeout(() => {
 				this.collapsing = false;
 				this.show = ! this.show;
-			}, 300)
+			}, 100)
     }
   }
 </script>
