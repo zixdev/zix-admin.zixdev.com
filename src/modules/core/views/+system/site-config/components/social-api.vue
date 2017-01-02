@@ -10,8 +10,7 @@ form.form-horizontal(@submit.prevent='save')
             label.col-sm-3.control-label
               | {{ $t('config.app_id') }} :
             .col-sm-9
-              input.form-control(type='text', v-model='config.title', required='', minlength='3', maxlength='255')
-              span.help-block.m-b-none.text-danger(v-if="getError('title')") {{ getError('title') }}
+              input.form-control(type='text', v-model='config[social.id + "_clientId"]', minlength='3', maxlength='255')
           .hr-line-dashed
 
         .col-md-12
@@ -19,8 +18,7 @@ form.form-horizontal(@submit.prevent='save')
             label.col-sm-3.control-label
               | {{ $t('config.app_secret') }} :
             .col-sm-9
-              input.form-control(type='email', v-model='config.email', required='', minlength='3', maxlength='255')
-              span.help-block.m-b-none.text-danger(v-if="getError('email')") {{ getError('email') }}
+              input.form-control(type='text', v-model='config[social.id + "_clientSecret"]', minlength='3', maxlength='255')
           .hr-line-dashed
 
 
@@ -43,23 +41,23 @@ form.form-horizontal(@submit.prevent='save')
       return {
         config: {},
         form: {
-            errors: {}
+            submitting: false
         },
         socials: [
           {
-            id: 'facebook',
+            id: 'services_facebook',
             name: 'Facebook'
           },
           {
-            id: 'twitter',
+            id: 'services_twitter',
             name: 'Twitter'
           },
           {
-            id: 'google',
+            id: 'services_google',
             name: 'Google Plus'
           },
           {
-            id: 'github',
+            id: 'services_github',
             name: 'Github'
           },
         ]
@@ -68,10 +66,19 @@ form.form-horizontal(@submit.prevent='save')
     save() {
       this.form.submitting = true;
 
+      this.$http.post(this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/config', this.config)
+        .then(res => {
+          this.form.submitting = false;
+          this.$events.$emit('notify', {
+              type: 'info',
+              title: this.$t('config.site_config'),
+              message: this.$t('config.config_success')
+          })
+        })
     }
 
-    getError(name) {
-
+    mounted() {
+      this.$events.$on('update-config', conf => this.config = conf)
     }
   }
 </script>

@@ -9,28 +9,26 @@ form.form-horizontal(@submit.prevent='save')
         label.col-sm-3.control-label
           | {{ $t('config.name') }} :
         .col-sm-9
-          input.form-control(type='text', v-model='config.title', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('title')") {{ getError('title') }}
+          input.form-control(type='text', v-model='config.mail_from_name', minlength='3', maxlength='255')
       .hr-line-dashed
     .col-md-6
       .form-group
         label.col-sm-3.control-label
           | {{ $t('config.email') }} :
         .col-sm-9
-          input.form-control(type='text', v-model='config.title', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('title')") {{ getError('title') }}
+          input.form-control(type='text', v-model='config.mail_from_address', minlength='3', maxlength='255')
       .hr-line-dashed
 
     .col-md-12
-      h1 Driver :
-        small.text-uppercase ({{ config.mail.type }})
+      h1 Driver
+        small.text-uppercase ({{ config.mail_driver }})
       .hr-line-dashed
     .col-md-6.col-md-offset-3
       .form-group
         label.col-sm-3.control-label
-          | {{ $t('config.email_system') }}
+          | {{ $t('config.mail_system') }}
         .col-sm-9
-          select.form-control(type='text',required='', v-model='config.mail.type')
+          select.form-control(type='text', v-model='config.mail_driver')
             option(value='smtp') SMTP
             option(value='mail') MAIL
             option(value='sendmail') SENDMAIL
@@ -38,40 +36,35 @@ form.form-horizontal(@submit.prevent='save')
             option(value='mandrill') MANDRILL
             option(value='sparkpost') SPARKPOST
             option(value='ses') SES
-          span.help-block.m-b-none.text-danger(v-if="getError('title')") {{ getError('title') }}
       .hr-line-dashed
-  .row(v-if='config.mail.type == "smtp"')
+  .row(v-if='config.mail_driver == "smtp"')
     .col-md-6
       .form-group
         label.col-sm-3.control-label
           | {{ $t('config.smtp.host') }} :
         .col-sm-9
-          input.form-control(type='text', v-model='config.smtp', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('smtp')") {{ getError('smtp') }}
+          input.form-control(type='text', v-model='config.mail_host', minlength='3', maxlength='255')
       .hr-line-dashed
     .col-md-6
       .form-group
         label.col-sm-3.control-label
           | {{ $t('config.smtp.port') }} :
         .col-sm-9
-          input.form-control(type='text', v-model='config.smtp', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('smtp')") {{ getError('smtp') }}
+          input.form-control(type='text', v-model='config.mail_port', minlength='3', maxlength='255')
       .hr-line-dashed
     .col-md-6
       .form-group
-        label.col-sm-3.control-label
+        label.col-sm-3.control-label(:title="$t('config.email')")
           | {{ $t('config.smtp.username') }} :
         .col-sm-9
-          input.form-control(type='text', v-model='config.smtp', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('smtp')") {{ getError('smtp') }}
+          input.form-control(type='text', v-model='config.mail_username', :title="$t('config.email')", minlength='3', maxlength='255')
       .hr-line-dashed
     .col-md-6
       .form-group
         label.col-sm-3.control-label
           | {{ $t('config.smtp.password') }} :
         .col-sm-9
-          input.form-control(type='text', v-model='config.smtp', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('smtp')") {{ getError('smtp') }}
+          input.form-control(type='password', v-model='config.mail_password', minlength='3', maxlength='255')
       .hr-line-dashed
 
 
@@ -91,23 +84,29 @@ form.form-horizontal(@submit.prevent='save')
   export default class EmailSettings {
     data() {
       return {
-        config: {
-          mail: {
-            type: 'smtp'
-          }
-        },
+        config: {},
         form: {
-            errors: {}
+            submitting: false
         },
       }
     }
+
     save() {
       this.form.submitting = true;
 
+      this.$http.post(this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/config', this.config)
+        .then(res => {
+          this.form.submitting = false;
+          this.$events.$emit('notify', {
+              type: 'info',
+              title: this.$t('config.site_config'),
+              message: this.$t('config.config_success')
+          })
+        })
     }
 
-    getError(name) {
-
+    mounted() {
+      this.$events.$on('update-config', conf => this.config = conf)
     }
   }
 </script>

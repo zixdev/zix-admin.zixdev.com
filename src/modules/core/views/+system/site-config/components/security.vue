@@ -10,7 +10,6 @@ form.form-horizontal(@submit.prevent='save')
           | {{ $t('config.public_key') }} :
         .col-sm-9
           input.form-control(type='text', v-model='config.captcha_public_key', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('captcha_public_key')") {{ getError('captcha_public_key') }}
       .hr-line-dashed
     .col-md-6
 
@@ -19,7 +18,6 @@ form.form-horizontal(@submit.prevent='save')
           | {{ $t('config.private_key') }} :
         .col-sm-9
           input.form-control(type='text', v-model='config.captcha_private_key', required='', minlength='3', maxlength='255')
-          span.help-block.m-b-none.text-danger(v-if="getError('captcha_private_key')") {{ getError('captcha_private_key') }}
       .hr-line-dashed
 
     .col-md-12
@@ -40,17 +38,27 @@ form.form-horizontal(@submit.prevent='save')
       return {
         config: {},
         form: {
-            errors: {}
+            submitting: false
         },
       }
     }
+
     save() {
       this.form.submitting = true;
 
+      this.$http.post(this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/config', this.config)
+        .then(res => {
+          this.form.submitting = false;
+          this.$events.$emit('notify', {
+              type: 'info',
+              title: this.$t('config.site_config'),
+              message: this.$t('config.config_success')
+          })
+        })
     }
 
-    getError(name) {
-
+    mounted() {
+      this.$events.$on('update-config', conf => this.config = conf)
     }
   }
 </script>

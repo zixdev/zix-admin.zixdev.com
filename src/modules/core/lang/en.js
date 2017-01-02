@@ -125,6 +125,11 @@ export default {
         save: 'Save',
     },
     config: {
+      site_config: 'Site Config',
+      site_title: 'Site Title',
+      company_name: 'Company Name',
+      company: 'Company',
+      config_success: 'Your Config Was Updated Successfully',
       name: 'Name',
       title: 'Title',
       tagline: 'Tagline',
