@@ -7,6 +7,7 @@ import VueEvents from "vue-events";
 import "./lang";
 
 
+
 /*
  * Vue Resource $http
  */
@@ -32,3 +33,9 @@ Vue.use(VueProgressBar, {
     failedColor: 'red',
     height: '2px'
 });
+
+
+window['$'] = window['jQuery'] = window['jquery'] = $;
+require('bootstrap-sass');
+require('metismenu');
+require('datatables.net-bs');

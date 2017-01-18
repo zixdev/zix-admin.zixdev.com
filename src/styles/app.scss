@@ -11,8 +11,12 @@ $fa-font-path: '~font-awesome/fonts/';
 @import "~toastr/build/toastr.css";
 
 
+
 #toast-container > .toast-info, .toast-success, .toast-warning, .toast-error {
     &:before {
         content: " " !important;
     }
 }
+
+
+@import "layouts/table";

@@ -15,10 +15,13 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "bootstrap-sass": "^3.3.7",
+    "datatables.net-bs": "^1.10.13",
     "dropzone": "^4.3.0",
     "font-awesome": "^4.6.3",
+    "install": "^0.8.4",
     "jquery": "^3.1.1",
     "metismenu": "^2.5.2",
+    "npm": "^4.1.1",
     "tinymce": "^4.4.3",
     "toastr": "^2.1.2",
     "vue": "^2.0.1",

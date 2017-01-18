@@ -20,6 +20,14 @@ Vue.http.interceptors.push(function (request, next) {
     Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     next();
 });
+// $.ajax({
+//     accepts: {
+//         Authorization: 'Bearer ' + localStorage.getItem('token')
+//     }
+// });
+$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    jqXHR.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+});
 
 
 router.beforeEach((route, redirect, next) => {
@@ -34,3 +42,11 @@ const app = new Vue({
     router,
     store
 }).$mount('#app');
+
+window['$zexus'] = app;
+window['Router'] = app.$router;
+$('a').on('click', function () {
+    console.log('hoho')
+    var $this = $(this);
+    console.log($this.data('href'))
+});

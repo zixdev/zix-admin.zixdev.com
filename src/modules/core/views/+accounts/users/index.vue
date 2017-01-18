@@ -10,12 +10,17 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <data-table
-                    :url="url"
-                    :columns="columns"
-                    @table-view="TableView"
-                    @table-edit="TableEdit"
-                ></data-table>
+                <table class="table table-striped data-table">
+                    <thead class="list_head">
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                </table>
 
             </div>
         </div>
@@ -24,65 +29,47 @@
 
 <script>
     import Component from 'vue-class-component'
-    import DataTable from '../../../components/table/data-table.vue'
 
-    @Component({
-        components: {
-            DataTable
-        }
-    })
+    @Component
     export default class Index {
 
-        TableEdit(data) {
-            this.$router.push({name: 'accounts.users.edit', params: {id: data.id}});
-        }
-        TableView(data) {
-            window.open(data.url)
-        }
-
-
-        get url() {
-            return this.$store.state.config.api_url + 'users';
-        }
-
-        get columns() {
-            return [
-                {
-                    id: 'id',
-                    filterable: true,
-                },
-                {
-                    id: 'username',
-                    filterable: true
-                },
-                {
-                    id: 'email',
-                    filterable: true,
-                },
-
-                {
-                    id: 'created_at',
-                    filterable: true,
-                },
-
-                {
-                    id: '__actions',
-                    actions: [
+        mounted() {
+            let self = this;
+            $('.table')
+                .DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: self.$store.state.config.api_url + 'users',
+                    columns: [
+                        {data: 'id'},
+                        {data: 'username'},
+                        {data: 'email'},
+                        {data: 'created_at'},
                         {
-                            id: 'table-edit',
-                            title: this.$t('accounts.users.edit'),
-                            icon: 'fa fa-edit',
-                            btnClass: 'btn-success',
-                        },
-                        {
-                            id: 'table-view',
-                            title: this.$t('accounts.users.view'),
-                            icon: 'fa fa-eye',
-                            btnClass: 'btn-warning',
+                            render: (e, v, data) => {
+                                return `
+                                    <a data-href="${data.id}" title="${self.$t('accounts.users.edit')}" class="edit btn btn-success">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a data-href="${data.id}" title="${self.$t('accounts.users.delete')}" class="remove btn btn-danger">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                `;
+                            }
                         }
-                    ]
-                }
-            ]
+
+                    ],
+
+                }) // Edit record
+                .on('click', 'a.edit', function (e) {
+                    e.preventDefault();
+                    self.$router.push({name: 'accounts.users.edit', params: {id: $(this).data('href')}});
+                }) // Delete a record
+                .on('click', 'a.remove', function (e) {
+                    e.preventDefault();
+                    self.$router.push({name: 'accounts.users.edit', params: {id: $(this).data('href')}});
+                });
+
         }
     }
 </script>

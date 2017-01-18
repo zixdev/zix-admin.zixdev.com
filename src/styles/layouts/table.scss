@@ -1,0 +1,12 @@
+.dataTables_wrapper {
+    .dataTables_filter {
+        float: right;
+        input {
+            margin-left: 15px;
+        }
+    }
+
+    .dataTables_paginate {
+        float: right;
+    }
+}
