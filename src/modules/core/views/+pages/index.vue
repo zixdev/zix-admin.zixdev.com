@@ -11,14 +11,14 @@
             </div>
             <div class="ibox-content">
                 <table class="table table-striped data-table">
-                    <thead class="list_head">
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Slug</th>
-                        <th>Created At</th>
-                        <th>Action</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                 </table>
             </div>

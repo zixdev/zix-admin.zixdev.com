@@ -11,10 +11,19 @@
             </div>
 
             <div class="ibox-content">
-                <data-table
-                    :url="url"
-                    :columns="columns"
-                ></data-table>
+                <table class="table table-striped data-table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                        <th>Code Size</th>
+                        <th>Assets Size</th>
+                        <th>Created At</th>
+                        <!--<th>Action</th>-->
+                    </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -22,46 +31,29 @@
 
 <script>
     import Component from 'vue-class-component'
-    import DataTable from '../../../components/table/data-table.vue'
 
-    @Component({
-        components: {
-            DataTable
-        }
-    })
-    export default class Index {
-        get url() {
-            return this.$store.state.config.api_url + 'sites/'+this.$route.params.id+'/ui';
+    @Component
+    export default class IndexSiteUi {
+        mounted() {
+            var self = this;
+            var table = DataTable;
+            table.url = this.$store.state.config.api_url + 'sites/'+this.$route.params.id+'/ui';
+
+            table.columns = [
+                {data: 'id'},
+                {data: 'version'},
+                {
+                    render: function (e, v, data) {
+                        return data.status ? '<i class="fa fa-circle text-success"></i> active' : '<i class="fa fa-circle text-danger"></i> disabled';
+                    }
+                },
+                {data: 'code_size'},
+                {data: 'assets_size'},
+                {data: 'created_at'}
+            ];
+            table.init();
         }
 
-        get columns() {
-            return [
-                {
-                    id: 'id',
-                    filterable: true,
-                },
-                {
-                    id: 'version',
-                    filterable: true
-                },
-                {
-                    id: 'status',
-                    callback: (data) => data.status ? '<i class="fa fa-circle text-success"></i> active' : '<i class="fa fa-circle text-danger"></i> disabled'
-                },
-                {
-                    id: 'code_size',
-                    filterable: true
-                },
-                {
-                    id: 'assets_size',
-                    filterable: true
-                },
-                {
-                    id: 'created_at',
-                    filterable: true
-                }
-            ]
-        }
     }
 </script>
 <style>

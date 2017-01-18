@@ -10,14 +10,17 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <data-table
-                    :url="url"
-                    :columns="columns"
-                    @table-view="TableView"
-                    @table-edit="TableEdit"
-                    @table-fields="TableFields"
-                ></data-table>
-
+                <table class="table table-striped data-table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -25,68 +28,27 @@
 
 <script type="text/babel">
     import Component from 'vue-class-component'
-    import DataTable from '../../../components/table/data-table.vue'
 
-    @Component({
-        components: {
-            DataTable
+    @Component
+    export default class IndexForms {
+        mounted() {
+        	var self = this;
+            let table = DataTable;
+            table.url = this.$store.state.config.api_url + 'forms';
+            table.edit = 'system.forms.edit';
+            table.delete = 'system.forms.delete';
+            table.actions = `<a title="${this.$t('system.forms.fields.index')}" class="config btn btn-default"> <i class="fa fa-cog"></i></a>`;
+            table.columns = [
+                {data: 'id'},
+                {data: 'title'},
+                {data: 'slug'},
+                {data: 'created_at'}
+            ];
+            table.init()
+                .on('click', 'a.config', function (e) {
+                    self.$router.push({name: 'system.forms.fields.index', params: {slug: $(this).parent().data('href')}});
+                });
         }
-    })
-    export default class Index {
 
-        TableEdit(data) {
-            this.$router.push({name: 'system.forms.edit', params: {id: data.id}});
-        }
-        TableView(data) {
-            window.open(data.url)
-        }
-        TableFields(data) {
-            this.$router.push({name: 'system.forms.fields.index', params: {slug: data.slug}});
-        }
-
-        get url() {
-            return this.$store.state.config.api_url + 'forms';
-        }
-
-        get columns() {
-            return [
-                {
-                    id: 'id',
-                    filterable: true,
-                },
-                {
-                    id: 'title',
-                    filterable: true
-                },
-                {
-                    id: 'slug',
-                    filterable: true,
-                },
-
-                {
-                    id: '__actions',
-                    actions: [
-                        {
-                            id: 'table-fields',
-                            title: this.$t('system.forms.fields.index'),
-                            icon: 'fa fa-cog',
-                            btnClass: 'btn-default',
-                        },
-                        {
-                            id: 'table-edit',
-                            title: this.$t('system.forms.edit'),
-                            icon: 'fa fa-edit',
-                            btnClass: 'btn-success',
-                        },
-                        {
-                            id: 'table-view',
-                            title: this.$t('system.forms.view'),
-                            icon: 'fa fa-eye',
-                            btnClass: 'btn-warning',
-                        }
-                    ]
-                }
-            ]
-        }
     }
 </script>

@@ -11,16 +11,18 @@
             </div>
 
             <div class="ibox-content">
-
-                <data-table
-                    :url="url"
-                    :columns="columns"
-                    @table-view="TableView"
-                    @table-edit="TableEdit"
-                    @table-ui-view="TableUiView"
-                    @table-config="TableConfig"
-                ></data-table>
-
+                <table class="table table-striped data-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Ui</th>
+                            <th>Url</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -28,80 +30,35 @@
 
 <script type="text/babel">
     import Component from 'vue-class-component'
-    import DataTable from '../../../components/table/data-table.vue'
 
-    @Component({
-        components: {
-            DataTable
-        }
-    })
+    @Component
     export default class Index {
+        mounted() {
+        	var self = this;
+            var table = DataTable;
+            table.url = this.$store.state.config.api_url + 'sites';
+            table.edit = 'system.sites.edit';
+            table.delete = 'pages.delete';
+            table.actions = `<a title="${this.$t('system.sites.config.index')}" class="config btn btn-default"> <i class="fa fa-cog"></i></a>`;
+            table.columns = [
+                {data: 'id'},
+                {data: 'name'},
+                {
+                    render: function (e, v, data) {
+                    	return `<a data-href="${data.id}" title="${self.$t('system.sites.config.index')}" class="ui"> @${data.ui}</a>`;
+                    }
+                },
+                {data: 'url'},
+                {data: 'created_at'}
+            ];
+            table.init()
+                .on('click', 'a.config', function (e) {
+                    self.$router.push({name: 'system.sites.config.index', params: {id: $(this).parent().data('href')}});
+                })
+                .on('click', 'a.ui', function (e) {
+                    self.$router.push({name: 'system.sites.ui.index', params: {id: $(this).data('href')}});
+                })
+        }
 
-        TableEdit(data) {
-            this.$router.push({name: 'system.sites.edit', params: {id: data.id}});
-        }
-        TableView(data) {
-            window.open(data.url)
-        }
-        TableUiView(data) {
-            this.$router.push({name: 'system.sites.ui.index', params: {id: data.id}});
-        }
-        TableConfig(data) {
-            this.$router.push({name: 'system.sites.config.index', params: {id: data.id}});
-        }
-
-        get url() {
-            return this.$store.state.config.api_url + 'sites';
-        }
-
-        get columns() {
-            return [
-                {
-                    id: 'id',
-                    filterable: true,
-                },
-                {
-                    id: 'name',
-                    filterable: true
-                },
-                {
-                    id: 'ui',
-                    filterable: true,
-                    callback: (data) => `<a href="javascript:void(0);">@${data.ui}</a>`,
-                    event: 'table-ui-view'
-                },
-                {
-                    id: 'url',
-                    trClass: 'hidden-sm',
-                    style: '',
-                    filterable: true,
-                    callback: (data) => data.url.substring(0, 30) +((data.url.length > 30) ? '...' : '')
-                },
-                {
-                    id: '__actions',
-                    name: '',
-                    actions: [
-                        {
-                            id: 'table-config',
-                            title: this.$t('system.sites.config.index'),
-                            icon: 'fa fa-cog',
-                            btnClass: 'btn-default',
-                        },
-                        {
-                            id: 'table-edit',
-                            title: this.$t('system.sites.edit'),
-                            icon: 'fa fa-edit',
-                            btnClass: 'btn-success',
-                        },
-                        {
-                            id: 'table-view',
-                            title: this.$t('system.sites.view'),
-                            icon: 'fa fa-eye',
-                            btnClass: 'btn-warning',
-                        }
-                    ]
-                }
-            ]
-        }
     }
 </script>
