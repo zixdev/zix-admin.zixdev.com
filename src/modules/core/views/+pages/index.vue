@@ -10,13 +10,17 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <data-table
-                    :url="url"
-                    :columns="columns"
-                    @table-view="TableView"
-                    @table-edit="TableEdit"
-                ></data-table>
-
+                <table class="table table-striped data-table">
+                    <thead class="list_head">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -24,59 +28,22 @@
 
 <script>
     import Component from 'vue-class-component'
-    import DataTable from '../../components/table/data-table.vue'
 
-    @Component({
-        components: {
-            DataTable
-        }
-    })
-    export default class Index {
-
-        TableEdit(data) {
-            this.$router.push({name: 'pages.edit', params: {id: data.id}});
-        }
-        TableView(data) {
-            window.open(data.url)
-        }
-
-        get url() {
-            return this.$store.state.config.api_url + 'pages';
+    @Component
+    export default class IndexPages {
+        mounted() {
+            let table = DataTable;
+            table.url = this.$store.state.config.api_url + 'pages';
+            table.edit = 'pages.edit';
+            table.delete = 'pages.delete';
+            table.columns = [
+                {data: 'id'},
+                {data: 'title'},
+                {data: 'slug'},
+                {data: 'created_at'}
+            ];
+            table.init();
         }
 
-        get columns() {
-            return [
-                {
-                    id: 'id',
-                    filterable: true,
-                },
-                {
-                    id: 'title',
-                    filterable: true
-                },
-                {
-                    id: 'slug',
-                    filterable: true,
-                },
-
-                {
-                    id: '__actions',
-                    actions: [
-                        {
-                            id: 'table-edit',
-                            title: this.$t('pages.edit'),
-                            icon: 'fa fa-edit',
-                            btnClass: 'btn-success',
-                        },
-                        {
-                            id: 'table-view',
-                            title: this.$t('pages.view'),
-                            icon: 'fa fa-eye',
-                            btnClass: 'btn-warning',
-                        }
-                    ]
-                }
-            ]
-        }
     }
 </script>

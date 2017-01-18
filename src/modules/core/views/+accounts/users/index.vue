@@ -21,7 +21,6 @@
                     </tr>
                     </thead>
                 </table>
-
             </div>
         </div>
     </div>
@@ -31,45 +30,18 @@
     import Component from 'vue-class-component'
 
     @Component
-    export default class Index {
-
+    export default class IndexUsers {
         mounted() {
-            let self = this;
-            $('.table')
-                .DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: self.$store.state.config.api_url + 'users',
-                    columns: [
-                        {data: 'id'},
-                        {data: 'username'},
-                        {data: 'email'},
-                        {data: 'created_at'},
-                        {
-                            render: (e, v, data) => {
-                                return `
-                                    <a data-href="${data.id}" title="${self.$t('accounts.users.edit')}" class="edit btn btn-success">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a data-href="${data.id}" title="${self.$t('accounts.users.delete')}" class="remove btn btn-danger">
-                                        <i class="fa fa-remove"></i>
-                                    </a>
-                                `;
-                            }
-                        }
-
-                    ],
-
-                }) // Edit record
-                .on('click', 'a.edit', function (e) {
-                    e.preventDefault();
-                    self.$router.push({name: 'accounts.users.edit', params: {id: $(this).data('href')}});
-                }) // Delete a record
-                .on('click', 'a.remove', function (e) {
-                    e.preventDefault();
-                    self.$router.push({name: 'accounts.users.edit', params: {id: $(this).data('href')}});
-                });
-
+            let table = DataTable;
+            table.url = this.$store.state.config.api_url + 'users';
+            table.edit = 'accounts.users.edit';
+            table.columns = [
+                {data: 'id'},
+                {data: 'username'},
+                {data: 'email'},
+                {data: 'created_at'},
+            ];
+            table.init();
         }
     }
 </script>
