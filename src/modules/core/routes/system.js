@@ -10,6 +10,7 @@ export default [
             icon: 'fa-cog',
             menu: true,
             auth: false,
+            permission: 'view_admin'
         },
         component: lazyLoading('+system', true),
         children: [
@@ -22,6 +23,7 @@ export default [
                 meta: {
                     menu: true,
                     auth: true,
+                    permission: 'view_sites'
                 },
                 component: lazyLoading('+system/sites', true)
             },
@@ -30,6 +32,7 @@ export default [
                 name: 'system.sites.add',
                 meta: {
                     auth: true,
+                    permission: 'create_sites'
                 },
                 component: lazyLoading('+system/sites/create')
             },
@@ -38,6 +41,7 @@ export default [
                 name: 'system.sites.edit',
                 meta: {
                     auth: true,
+                    permission: 'update_sites'
                 },
                 component: lazyLoading('+system/sites/create')
             },
@@ -50,6 +54,7 @@ export default [
                 name: 'system.sites.ui.index',
                 meta: {
                     auth: true,
+                    permission: 'view_ui'
                 },
                 component: lazyLoading('+system/site-ui', true)
             },
@@ -58,6 +63,7 @@ export default [
                 name: 'system.sites.ui.add',
                 meta: {
                     auth: true,
+                    permission: 'create_ui'
                 },
                 component: lazyLoading('+system/site-ui/create')
             },
@@ -70,6 +76,7 @@ export default [
                 name: 'system.sites.config.index',
                 meta: {
                     auth: true,
+                    permission: 'update_sites'
                 },
                 component: lazyLoading('+system/site-config', true)
             },
@@ -83,14 +90,16 @@ export default [
                 meta: {
                     menu: true,
                     auth: true,
+                    permission: 'view_forms'
                 },
                 component: lazyLoading('+system/forms', true)
             },
             {
-                path: '/system/forms/add',
+                path: '/system/forms/create',
                 name: 'system.forms.add',
                 meta: {
                     auth: true,
+                    permission: 'create_forms'
                 },
                 component: lazyLoading('+system/forms/create')
             },
@@ -100,6 +109,7 @@ export default [
                 name: 'system.forms.edit',
                 meta: {
                     auth: true,
+                    permission: 'update_forms'
                 },
                 component: lazyLoading('+system/forms/create')
             },
@@ -108,6 +118,7 @@ export default [
                 name: 'system.forms.fields.index',
                 meta: {
                     auth: true,
+                    permission: 'update_forms'
                 },
                 component: lazyLoading('+system/forms/fields')
             },

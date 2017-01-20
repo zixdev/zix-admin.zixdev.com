@@ -10,6 +10,7 @@ export default [
             icon: 'fa-file-text-o',
             menu: true,
             auth: false,
+            permission: 'view_pages'
         },
         component: lazyLoading('+pages', true),
         children: [
@@ -22,6 +23,7 @@ export default [
                 meta: {
                     menu: true,
                     auth: true,
+                    permission: 'view_pages'
                 },
                 component: lazyLoading('+pages', true)
             },
@@ -31,6 +33,7 @@ export default [
                 meta: {
                     menu: true,
                     auth: true,
+                    permission: 'create_pages'
                 },
                 component: lazyLoading('+pages/create')
             },
@@ -40,6 +43,7 @@ export default [
                 name: 'pages.edit',
                 meta: {
                     auth: true,
+                    permission: 'update_pages'
                 },
                 component: lazyLoading('+pages/create')
             }

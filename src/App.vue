@@ -44,9 +44,10 @@
           // If we have a token, consider the user to be signed in.
           if (token) {
               this.$http.get(this.$store.state.config.api_url + 'user')
-                  .then(
-                      // res => console.info(res),
-                  )
+                  .then(response => {
+                      this.$store.state.auth = response.data.data.user;
+                      this.$store.state.auth_permissions = response.data.data.permissions;
+                  })
                   .catch(err => {
                       localStorage.removeItem('token');
                       this.$router.push({name: 'auth.logout'});

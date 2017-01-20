@@ -40,7 +40,7 @@ export default {
         permissions: {
             index_title: 'All Permissions',
             index: 'Manage Role Permissions',
-            edit: 'Edit Role Permissions',
+            edit: 'Edit Role',
         }
     },
     system: {

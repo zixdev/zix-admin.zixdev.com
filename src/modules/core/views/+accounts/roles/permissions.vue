@@ -28,7 +28,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button class="btn btn-priamry" @click="save()">Update</button>
+                        <button class="btn btn-priamry" @click="save()" :disabled="submitting">
+                            <i v-if="submitting" class="fa fa-spinner fa-pulse"></i>
+                            {{ $t('form.updated') }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -51,18 +54,21 @@
                 	id: 1,
                     name: 'view_admin',
                     active: true
-                }
+                },
+                submitting: false
             }
         }
 
         save() {
+        	this.submitting = true;
             this.$http.post(this.$store.state.config.api_url + 'roles/' + this.$route.params.id + '/permissions', this.permissions)
                 .then(res => {
                     this.$events.$emit('notify', {
                         type: 'info',
                         title: 'Success !',
                         message: 'Role Permissions Was Updated Successfully!'
-                    })
+                    });
+                    this.submitting = false;
                     this.$router.push({name: 'accounts.roles.index'});
                 })
         }

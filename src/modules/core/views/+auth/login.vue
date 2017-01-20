@@ -53,11 +53,13 @@ export default class Login {
         this.form.submitting = true;
         this.$http.post(this.$store.state.config.api_url + 'login', this.user)
             .then(response => {
+            	console.log(response.data.data)
                 let res = response.data.data;
                 if (res.permissions.includes('full_access') || res.permissions.includes('view_admin')) {
                     localStorage.setItem('token', res.token);
                     this.$store.state.token = res.token;
-                    this.$store.state.user = res.user;
+                    this.$store.state.auth = res.user;
+                    this.$store.state.auth_permissions = res.permissions;
                     this.form.submitted = true;
 
                     this.$store.state.authorized = true;

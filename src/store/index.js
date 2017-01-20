@@ -3,6 +3,8 @@ import Config from './config';
 const store = new Vuex.Store({
     state: {
         authorized: false,
+        auth: {},
+        auth_permissions: [],
         config: Config,
         $router: {},
         menu: []

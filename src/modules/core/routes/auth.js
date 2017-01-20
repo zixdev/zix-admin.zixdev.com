@@ -10,6 +10,7 @@ export default [
             menu: true,
             icon: 'fa-th-large',
             auth: true,
+            permission: 'view_admin'
         },
         component: lazyLoading('home', true),
     },
@@ -19,6 +20,7 @@ export default [
         meta: {
             icon: 'fa-tachometer',
             auth: false,
+            permission: 'view_admin'
         },
         component: lazyLoading('+auth/login')
     },
@@ -29,6 +31,7 @@ export default [
         meta: {
             icon: 'fa-tachometer',
             auth: true,
+            permission: 'view_admin'
         },
         component: lazyLoading('+auth/logout')
     },

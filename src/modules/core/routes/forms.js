@@ -10,6 +10,7 @@ const FormRoutes = [
             icon: 'fa-pencil-square-o',
             menu: true,
             auth: false,
+            permission: 'view_forms'
         },
         component: lazyLoading('+forms', true),
         children: []
@@ -19,6 +20,7 @@ const FormRoutes = [
         name: 'forms.view',
         meta: {
             auth: false,
+            permission: 'view_forms'
         },
         component: lazyLoading('+forms', true),
     }
@@ -33,6 +35,7 @@ Vue.http.get(store.state.config.api_url + 'forms').then(response => {
             meta: {
                 menu: true,
                 auth: true,
+                permission: 'view_forms'
             },
             component: lazyLoading('+forms', true)
         });

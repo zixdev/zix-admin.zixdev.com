@@ -41,3 +41,17 @@ const app = new Vue({
 window['$zexus'] = app;
 
 window['DataTable'] = Tablage(app);
+/*
+ * App Permissions Middleware
+ */
+app.$router.beforeEach((route, redirect, next) => {
+    if(!app.$store.state.auth_permissions.includes(route.meta.permission)){
+        app.$events.$emit('notify', {
+            type: 'warning',
+            title: 'Warning !',
+            message: 'Authorized Action'
+        });
+        next('/')
+    }
+    next()
+});

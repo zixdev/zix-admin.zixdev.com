@@ -10,6 +10,7 @@ export default [
             icon: 'fa-user',
             menu: true,
             auth: false,
+            permission: 'view_users'
         },
         component: lazyLoading('+pages', true),
         children: [
@@ -22,6 +23,7 @@ export default [
                 meta: {
                     menu: true,
                     auth: true,
+                    permission: 'view_users'
                 },
                 component: lazyLoading('+accounts/users', true)
             },
@@ -30,6 +32,7 @@ export default [
                 name: 'accounts.users.add',
                 meta: {
                     auth: true,
+                    permission: 'create_users'
                 },
                 component: lazyLoading('+accounts/users/create')
             },
@@ -39,6 +42,7 @@ export default [
                 name: 'accounts.users.edit',
                 meta: {
                     auth: true,
+                    permission: 'update_users'
                 },
                 component: lazyLoading('+accounts/users/create')
             },
@@ -50,6 +54,7 @@ export default [
                 meta: {
                     menu: true,
                     auth: true,
+                    permission: 'full_access'
                 },
                 component: lazyLoading('+accounts/roles', true)
             },
@@ -58,6 +63,7 @@ export default [
                 name: 'accounts.roles.create',
                 meta: {
                     auth: true,
+                    permission: 'full_access'
                 },
                 component: lazyLoading('+accounts/roles/create')
             },
@@ -66,6 +72,7 @@ export default [
                 name: 'accounts.roles.edit',
                 meta: {
                     auth: true,
+                    permission: 'full_access'
                 },
                 component: lazyLoading('+accounts/roles/create')
             },
@@ -74,6 +81,7 @@ export default [
                 name: 'accounts.permissions.index',
                 meta: {
                     auth: true,
+                    permission: 'full_access'
                 },
                 component: lazyLoading('+accounts/roles/permissions')
             },
