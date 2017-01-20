@@ -32,7 +32,15 @@ export default {
             delete: 'Delete User Account',
         },
         roles: {
-            index: 'Roles'
+            index_title: 'All Available Roles',
+            index: 'Roles',
+            create: 'Create New Role',
+            edit: 'Edit Role',
+        },
+        permissions: {
+            index_title: 'All Permissions',
+            index: 'Manage Role Permissions',
+            edit: 'Edit Role Permissions',
         }
     },
     system: {

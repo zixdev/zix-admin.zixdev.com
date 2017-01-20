@@ -51,8 +51,32 @@ export default [
                     menu: true,
                     auth: true,
                 },
-                component: lazyLoading('+pages/create')
-            }
+                component: lazyLoading('+accounts/roles', true)
+            },
+            {
+                path: '/accounts/roles/create',
+                name: 'accounts.roles.create',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+accounts/roles/create')
+            },
+            {
+                path: '/accounts/roles/:id/edit',
+                name: 'accounts.roles.edit',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+accounts/roles/create')
+            },
+            {
+                path: '/accounts/roles/:id/permissions',
+                name: 'accounts.permissions.index',
+                meta: {
+                    auth: true,
+                },
+                component: lazyLoading('+accounts/roles/permissions')
+            },
         ]
     },
 

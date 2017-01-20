@@ -12,12 +12,12 @@ export default function (app) {
             this.columns.push({
                 render: function (e, v, data) {
                     let actions = `<span data-href="${data.id}">${self.actions}</span>`;
-                    if (self.edit) {
-                        actions += `<a data-href="${data.id}" title="${self.edit}" class="edit btn btn-success"> <i class="fa fa-edit"></i></a>`;
+                    if (self.edit && data.deleted_at == null) {
+                        actions += `<a data-href="${data.id}" title="${app.$t(self.edit)}" class="edit btn btn-success"> <i class="fa fa-edit"></i></a>`;
                     }
 
                     if (self.view) {
-                        actions += `<a data-href="${data.id}" title="${self.view}" class="view btn btn-info"> <i class="fa fa-eye"></i></a>`;
+                        actions += `<a data-href="${data.id}" title="${app.$t(self.view)}" class="view btn btn-info"> <i class="fa fa-eye"></i></a>`;
                     }
 
                     if (self.delete && data.deleted_at == null) {
