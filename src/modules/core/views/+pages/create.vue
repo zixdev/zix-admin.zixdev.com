@@ -15,7 +15,7 @@
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
-                                   v-model="site.title"
+                                   v-model="page.title"
                                    required
                                    minlength="3"
                                    maxlength="255"
@@ -31,7 +31,7 @@
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text"
-                                   v-model="site.slug"
+                                   v-model="page.slug"
                                    required
                                    minlength="3"
                                    maxlength="255"
@@ -45,19 +45,16 @@
                             {{ $t('table.sites') }} :
                         </label>
                         <div class="col-sm-10">
+
                             <multiselect
+                                :value="page.sites"
                                 :options="sites"
-                                :selected.sync="site.sites"
                                 :multiple="true"
-                                :searchable="true"
-                                placeholder="Select Site"
+                                key="id"
                                 label="name"
-                                @select="updateSelected"
-                                @remove="removeSelected"
-                                required
-                            >
+                                @input="updateSelected">
                             </multiselect>
-                            <span v-if="form.errors && form.errors.slug" class="help-block m-b-none text-danger">{{form.errors.slug.toString()}}</span>
+                            <span v-if="form.errors && form.errors.sites" class="help-block m-b-none text-danger">{{form.errors.sites.toString()}}</span>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -68,7 +65,7 @@
                         </label>
                         <div class="col-sm-10">
                             <tinymce-editor
-                                :content.sync="site.content"
+                                :content.sync="page.content"
                                 @change="updateContent"
                             ></tinymce-editor>
                             <span v-if="form.errors && form.errors.ui" class="help-block m-b-none text-danger">{{form.errors.ui.toString()}}</span>
@@ -87,7 +84,6 @@
                             </button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -96,8 +92,8 @@
 
 <script>
     import Component from 'vue-class-component'
-    import Multiselect from 'vue-multiselect'
     import TinymceEditor from '../../components/tinymce-editor';
+    import Multiselect from 'vue-multiselect'
 
 
     @Component({
@@ -108,7 +104,7 @@
     export default class Create {
         data() {
             return {
-                site: {
+                page: {
                     title: '',
                     slug: '',
                     content: '',
@@ -117,25 +113,15 @@
                 form: {
                     errors: {}
                 },
-                sites: []
-
+                sites: [],
             };
         }
         get edit() {
             return this.$route.params.id ? true : false;
         }
 
-        updateSelected(site) {
-            this.site.sites.push(site.id);
-        }
-        removeSelected(site) {
-            this.site.sites = this.site.sites.filter((id) => {
-                return id !== site.id;
-            });
-        }
-
         updateContent(content) {
-            this.site.content = content;
+            this.page.content = content;
         }
         mounted() {
             /*
@@ -148,7 +134,7 @@
              */
             this.$watch('edit', () => {
                 this.$events.$emit('update-tinycme', '');
-                this.site = {
+                this.page = {
                     title: '',
                     slug: '',
                     content: '',
@@ -160,9 +146,10 @@
              * When form title changes.
              * Slug will be updated.
              */
-            this.$watch('site.title', (title, val ) => {
-                this.site.slug = title.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'-');;
-            })
+            this.$watch('page.title', (title, val) => {
+                this.page.slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '-');
+                ;
+            });
 
             /*
              * Load The Sites Data
@@ -183,7 +170,7 @@
         }
 
         create() {
-            this.$http.post(this.$store.state.config.api_url + 'pages', this.site)
+            this.$http.post(this.$store.state.config.api_url + 'pages', this.page)
                 .then(response => {
                     this.$router.push({name: 'pages.all'})
                 })
@@ -194,7 +181,7 @@
         }
 
         update() {
-            this.$http.put(this.$store.state.config.api_url + 'pages/' + this.$route.params.id, this.site)
+            this.$http.put(this.$store.state.config.api_url + 'pages/' + this.$route.params.id, this.page)
                 .then(response => {
                     this.$router.push({name: 'pages.all'})
                     this.$events.$emit('notify', {
@@ -212,10 +199,13 @@
         updateEditPage() {
             this.$http.get(this.$store.state.config.api_url + 'pages/' + this.$route.params.id)
                 .then(response => {
-                    this.site = response.data.data;
-                    console.log(response.data.data);
+                    this.page = response.data.data;
                     this.$events.$emit('update-tinycme', response.data.data.content);
                 });
+        }
+
+        updateSelected(data) {
+            this.page.sites = data;
         }
 
 

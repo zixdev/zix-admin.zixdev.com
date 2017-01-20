@@ -62,7 +62,7 @@ export default class Login {
 
                     this.$store.state.authorized = true;
                     this.$router.push({
-                        name: 'Dashboard'
+                        name: 'dashboard'
                     });
 
                     return true;
