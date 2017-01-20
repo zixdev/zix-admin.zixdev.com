@@ -156,6 +156,12 @@ export default {
         password: 'Password',
       }
     },
+    seo: {
+        title: 'Meta Title',
+        keywords: 'Meta Keywords',
+        description: 'Meta Description'
+    },
+
 
     // other
     'Contact Us': 'Contact Us'

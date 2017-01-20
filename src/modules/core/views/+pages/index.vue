@@ -16,6 +16,7 @@
                             <th>Id</th>
                             <th>Title</th>
                             <th>Slug</th>
+                            <th>Status</th>
                             <th>Created At</th>
                             <th>Action</th>
                         </tr>
@@ -40,6 +41,11 @@
                 {data: 'id'},
                 {data: 'title'},
                 {data: 'slug'},
+                {
+                    render: function (e, v, data) {
+                        return data.status ? '<i class="fa fa-circle text-success"></i> active' : '<i class="fa fa-circle text-danger"></i> disabled';
+                    }
+                },
                 {data: 'created_at'}
             ];
             table.init();

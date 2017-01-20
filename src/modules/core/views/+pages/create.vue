@@ -74,6 +74,59 @@
                     <div class="hr-line-dashed"></div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{ $t('seo.title') }} :
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text"
+                                   v-model="page.seo.title"
+                                   minlength="3"
+                                   maxlength="255"
+                            >
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{ $t('seo.keywords') }} :
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text"
+                                   v-model="page.seo.keywords"
+                                   minlength="3"
+                                   maxlength="255"
+                            >
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{ $t('seo.description') }} :
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text"
+                                   v-model="page.seo.description"
+                                   minlength="3"
+                                   maxlength="255"
+                            >
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{ $t('table.status') }} :
+                        </label>
+                        <div class="col-sm-10">
+                            <div class="material-switch">
+                                <input id="status" v-model="page.status" type="checkbox"/>
+                                <label for="status" class="label-primary"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
                             <router-link :to="{name: 'pages.all'}" class="btn btn-white">
                                 {{ $t('form.cancel') }}
@@ -108,7 +161,13 @@
                     title: '',
                     slug: '',
                     content: '',
-                    sites: []
+                    sites: [],
+                    seo: {
+                        title: '',
+                        description: '',
+                        keywords: ''
+                    },
+                    status: true
                 },
                 form: {
                     errors: {}
@@ -124,6 +183,7 @@
             this.page.content = content;
         }
         mounted() {
+
             /*
              * Initialize The Tiny CME Editor.
              */
