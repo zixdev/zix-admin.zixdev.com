@@ -4,7 +4,8 @@
             <div class="ibox-title">
                 <h5>{{ $t('system.sites.theme.index_title') }} </h5>
                 <div class="ibox-tools">
-                    <router-link :to="{name: 'system.sites.theme.add', params: {id: $route.params.id}}" class="btn btn-success">
+                    <router-link :to="{name: 'system.sites.theme.add', params: {id: $route.params.id}}"
+                                 class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </router-link>
                 </div>
@@ -20,7 +21,7 @@
                         <th>Code Size</th>
                         <th>Assets Size</th>
                         <th>Created At</th>
-                        <!--<th>Action</th>-->
+                        <th></th>
                     </tr>
                     </thead>
                 </table>
@@ -33,12 +34,13 @@
     import Component from 'vue-class-component'
 
     @Component
-    export default class IndexSiteUi {
+    export default class SiteThemes {
         mounted() {
-            var self = this;
-            var table = DataTable;
-            table.url = this.$store.state.config.api_url + 'sites/'+this.$route.params.id+'/themes';
-
+            let table = DataTable;
+            table.url = this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/themes';
+            table.edit = false;
+            table.delete = false;
+            table.actions = '';
             table.columns = [
                 {data: 'id'},
                 {data: 'version'},

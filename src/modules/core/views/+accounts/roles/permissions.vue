@@ -7,20 +7,19 @@
             </div>
             <div class="ibox-content">
                 <div class="row">
-                    <h1 class="col-md-2">Type</h1>
+                    <h1 class="col-md-3">Type</h1>
                     <h1 class="col-md-2">View</h1>
                     <h1 class="col-md-2">Create</h1>
                     <h1 class="col-md-2">Update</h1>
                     <h1 class="col-md-2">Delete</h1>
-                    <h1 class="col-md-2">Restore</h1>
                 </div>
                 <hr >
                 <div v-for="type in types" class="row">
-                    <h2 class="col-md-2 text-capitalize">
-                        {{ type  }}
+                    <h2 class="col-md-3 text-capitalize">
+                        {{ type.replace('_', ' ')  }}
                     </h2>
                     <div v-for="permission in models[type]" class="col-md-2">
-                        <div class="material-switch" :title="permission.name">
+                        <div class="material-switch" :title="permission.name.replace('_', ' ').toUpperCase()">
                             <input :id="permission.name" v-model="permissions[permission.name]" type="checkbox"/>
                             <label :for="permission.name" class="label-info"></label>
                         </div>
@@ -74,7 +73,6 @@
         }
 
         mounted() {
-        	var $this = this;
             // get all permissions
             this.$http.get(this.$store.state.config.api_url + 'roles/all/permissions')
                 .then(response => {
@@ -112,6 +110,3 @@
         }
     }
 </script>
-<style lang="scss" rel="stylesheet/scss">
-
-</style>

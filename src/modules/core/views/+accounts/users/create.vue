@@ -130,6 +130,11 @@
         create() {
             this.$http.post(this.$store.state.config.api_url + 'users', this.user)
                 .then(response => {
+                    this.$events.$emit('notify', {
+                        type: 'info',
+                        title: 'Success !',
+                        message: 'User Account Was Created Successfully!'
+                    });
                     this.$router.push({name: 'accounts.users.index'});
                 })
                 .catch(error => {
@@ -141,6 +146,11 @@
         update() {
             this.$http.put(this.$store.state.config.api_url + 'users/' + this.$route.params.id, this.user)
                 .then(response => {
+                    this.$events.$emit('notify', {
+                        type: 'info',
+                        title: 'Success !',
+                        message: 'User Account Was Updated Successfully!'
+                    });
                     this.$router.push({name: 'accounts.users.index'});
                 })
                 .catch(error => {

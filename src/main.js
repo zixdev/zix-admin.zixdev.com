@@ -49,7 +49,7 @@ app.$router.beforeEach((route, redirect, next) => {
         app.$events.$emit('notify', {
             type: 'warning',
             title: 'Warning !',
-            message: 'Authorized Action'
+            message: 'You Don\'t Access To Permission : '  + route.meta.permission.replace('_', ' ').toUpperCase().replace('_', ' ')
         });
         next('/')
     }

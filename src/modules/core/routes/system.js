@@ -47,25 +47,25 @@ export default [
             },
 
             /*
-             * Site Ui Routers.
+             * Site Theme Routers.
              */
             {
-                path: '/system/sites/:id/ui',
-                name: 'system.sites.ui.index',
+                path: '/system/sites/:id/theme',
+                name: 'system.sites.theme.index',
                 meta: {
                     auth: true,
-                    permission: 'view_ui'
+                    permission: 'view_site_themes'
                 },
-                component: lazyLoading('+system/site-ui', true)
+                component: lazyLoading('+system/site-theme', true)
             },
             {
-                path: '/system/sites/:id/ui/add',
-                name: 'system.sites.ui.add',
+                path: '/system/sites/:id/theme/add',
+                name: 'system.sites.theme.add',
                 meta: {
                     auth: true,
-                    permission: 'create_ui'
+                    permission: 'create_site_themes'
                 },
-                component: lazyLoading('+system/site-ui/create')
+                component: lazyLoading('+system/site-theme/create')
             },
 
             /*
@@ -76,7 +76,7 @@ export default [
                 name: 'system.sites.config.index',
                 meta: {
                     auth: true,
-                    permission: 'update_sites'
+                    permission: 'view_site_configs'
                 },
                 component: lazyLoading('+system/site-config', true)
             },

@@ -33,6 +33,7 @@
                             <input class="form-control" type="text"
                                    v-model="page.slug"
                                    required
+                                   disabled
                                    minlength="3"
                                    maxlength="255"
                             >
@@ -208,7 +209,6 @@
              */
             this.$watch('page.title', (title, val) => {
                 this.page.slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '-');
-                ;
             });
 
             /*
@@ -232,6 +232,11 @@
         create() {
             this.$http.post(this.$store.state.config.api_url + 'pages', this.page)
                 .then(response => {
+                    this.$events.$emit('notify', {
+                        type: 'info',
+                        title: 'Success !',
+                        message: 'Your Page Was Created Successfully!'
+                    });
                     this.$router.push({name: 'pages.all'})
                 })
                 .catch(error => {

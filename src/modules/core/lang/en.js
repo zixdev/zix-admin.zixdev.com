@@ -53,7 +53,7 @@ export default {
             edit: 'Edit Site',
             view: 'View Site',
             delete: 'Delete Site',
-            ui: {
+            theme: {
                 index: 'Site Ui',
                 index_title: 'All Installed UI\'s',
                 add: 'Add Site Ui',

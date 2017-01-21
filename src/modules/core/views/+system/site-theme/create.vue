@@ -40,7 +40,7 @@
     import Dropzone from 'dropzone';
 
     @Component
-    export default class Create {
+    export default class CreateTheme {
         data() {
             return {
                 site: {},
@@ -67,8 +67,9 @@
         }
 
         setUpDropZone(type) {
+        	let $this = this;
             this.dropZone = new Dropzone('form.dropzone', {
-                url:  this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/theme?type='+type,
+                url:  $this.$store.state.config.api_url + 'sites/' + $this.$route.params.id + '/themes?type='+type,
                 dictDefaultMessage: "<strong class='text-center'>Drop your UI zip file here. </strong>",
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -77,7 +78,7 @@
                 maxFilesize: 100, // MB,
 
                 success: () => {
-                    this.$router.push({name: 'Site UI', params: {id: this.site.id}});
+                    this.$router.push({name: 'system.sites.theme.index', params: {id: this.site.id}});
                 },
 
                 error: (item, err) => {

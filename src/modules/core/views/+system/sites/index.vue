@@ -16,7 +16,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Ui</th>
+                            <th>Theme</th>
                             <th>Url</th>
                             <th>Created At</th>
                             <th>Action</th>
@@ -45,7 +45,7 @@
                 {data: 'name'},
                 {
                     render: function (e, v, data) {
-                    	return `<a data-href="${data.id}" title="${self.$t('system.sites.config.index')}" class="ui"> @${data.ui}</a>`;
+                    	return `<a data-href="${data.id}" title="${self.$t('system.sites.config.index')}" class="theme"> @${data.ui}</a>`;
                     }
                 },
                 {data: 'url'},
@@ -55,8 +55,8 @@
                 .on('click', 'a.config', function (e) {
                     self.$router.push({name: 'system.sites.config.index', params: {id: $(this).parent().data('href')}});
                 })
-                .on('click', 'a.ui', function (e) {
-                    self.$router.push({name: 'system.sites.ui.index', params: {id: $(this).data('href')}});
+                .on('click', 'a.theme', function (e) {
+                    self.$router.push({name: 'system.sites.theme.index', params: {id: $(this).data('href')}});
                 })
         }
 

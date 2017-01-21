@@ -26,7 +26,7 @@ const FormRoutes = [
     }
 ];
 
-
+Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 Vue.http.get(store.state.config.api_url + 'forms').then(response => {
     response.data.data.map(form => {
         FormRoutes[0].children.push({
