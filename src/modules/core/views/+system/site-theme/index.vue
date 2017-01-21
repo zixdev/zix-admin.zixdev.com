@@ -2,9 +2,9 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>{{ $t('system.sites.ui.index_title') }} </h5>
+                <h5>{{ $t('system.sites.theme.index_title') }} </h5>
                 <div class="ibox-tools">
-                    <router-link :to="{name: 'system.sites.ui.add', params: {id: $route.params.id}}" class="btn btn-success">
+                    <router-link :to="{name: 'system.sites.theme.add', params: {id: $route.params.id}}" class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </router-link>
                 </div>
@@ -37,7 +37,7 @@
         mounted() {
             var self = this;
             var table = DataTable;
-            table.url = this.$store.state.config.api_url + 'sites/'+this.$route.params.id+'/ui';
+            table.url = this.$store.state.config.api_url + 'sites/'+this.$route.params.id+'/themes';
 
             table.columns = [
                 {data: 'id'},
@@ -56,6 +56,3 @@
 
     }
 </script>
-<style>
-
-</style>

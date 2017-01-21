@@ -4,14 +4,14 @@
             <div class="ibox-title">
                 <h5>
                     <i class="fa fa-pencil"></i>
-                    {{ $t('system.sites.ui.add_title', {site: site.name}) }}
+                    {{ $t('system.sites.theme.add_title', {site: site.name}) }}
                 </h5>
 
             </div>
 
             <div class="ibox-content">
-                <div v-if="form.errors && form.errors.ui" class="alert alert-danger">
-                    {{form.errors.ui}}
+                <div v-if="form.errors && form.errors.theme" class="alert alert-danger">
+                    {{form.errors.theme}}
                 </div>
                 <div class="form-group">
                     <select class="form-control m-b" @change="updateType" v-model="type">
@@ -27,7 +27,7 @@
                 <form class="dropzone">
 
                     <div class="fallback">
-                        <input name="file" type="file" multiple/>
+                        <input name="file" type="file"/>
                     </div>
                 </form>
             </div>
@@ -68,7 +68,7 @@
 
         setUpDropZone(type) {
             this.dropZone = new Dropzone('form.dropzone', {
-                url:  this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/ui?type='+type,
+                url:  this.$store.state.config.api_url + 'sites/' + this.$route.params.id + '/theme?type='+type,
                 dictDefaultMessage: "<strong class='text-center'>Drop your UI zip file here. </strong>",
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
