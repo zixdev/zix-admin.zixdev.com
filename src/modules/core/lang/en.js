@@ -30,6 +30,7 @@ export default {
             edit: 'Edit User Account',
             view: 'View User Info',
             delete: 'Delete User Account',
+            roles: 'Manage User Roles'
         },
         roles: {
             index_title: 'All Available Roles',
@@ -128,7 +129,7 @@ export default {
     form: {
         edit: 'Edit',
         create: 'Create',
-        updated: 'Update',
+        update: 'Update',
         cancel: 'Cancel',
         save: 'Save',
     },

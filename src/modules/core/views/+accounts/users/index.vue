@@ -30,18 +30,23 @@
     import Component from 'vue-class-component'
 
     @Component
-    export default class IndexUsers {
+    export default class Users {
         mounted() {
+        	var self = this;
             let table = DataTable;
             table.url = this.$store.state.config.api_url + 'users';
             table.edit = 'accounts.users.edit';
+            table.actions = `<a title="${this.$t('accounts.users.roles')}" class="roles btn btn-default"> <i class="fa fa-user-secret"></i></a>`;
             table.columns = [
                 {data: 'id'},
                 {data: 'username'},
                 {data: 'email'},
                 {data: 'created_at'},
             ];
-            table.init();
+            table.init()
+                .on('click', 'a.roles', function (e) {
+                    self.$router.push({name: 'accounts.users.roles', params: {id: $(this).parent().data('href')}});
+                })
         }
     }
 </script>

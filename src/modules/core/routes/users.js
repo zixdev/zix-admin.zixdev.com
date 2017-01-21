@@ -47,6 +47,15 @@ export default [
                 component: lazyLoading('+accounts/users/create')
             },
 
+            {
+                path: '/accounts/:id/roles',
+                name: 'accounts.users.roles',
+                meta: {
+                    auth: true,
+                    permission: 'update_roles'
+                },
+                component: lazyLoading('+accounts/users/user-role')
+            },
 
             {
                 path: '/accounts/roles',
