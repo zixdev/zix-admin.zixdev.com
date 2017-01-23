@@ -37,6 +37,7 @@
             table.url = this.$store.state.config.api_url + 'pages';
             table.edit = 'pages.edit';
             table.delete = 'pages.delete';
+            table.actions = '';
             table.columns = [
                 {data: 'id'},
                 {data: 'title'},

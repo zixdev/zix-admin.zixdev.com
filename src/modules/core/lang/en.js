@@ -79,6 +79,11 @@ export default {
     },
 
     forms: {
+        contact: {
+            index_title: 'All Contact Requests',
+            index: 'Contact Us',
+            reply: 'Contact Reply'
+        },
         index: 'Forms',
         view: 'View Form Responses'
     },
@@ -86,6 +91,10 @@ export default {
     table: {
         id: 'Id',
         name: 'Name',
+        phone: 'Phone',
+        address: 'Address',
+        subject: 'Subject',
+        message: 'Message',
         title: 'Title',
         slug: 'Slug',
         ui: 'Ui',
@@ -134,6 +143,8 @@ export default {
         update: 'Update',
         cancel: 'Cancel',
         save: 'Save',
+        reply: 'Reply',
+        send_reply: 'Send Reply'
     },
     config: {
       site_config: 'Site Config',

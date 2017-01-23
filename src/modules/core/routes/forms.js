@@ -13,16 +13,30 @@ const FormRoutes = [
             permission: 'view_forms'
         },
         component: lazyLoading('+forms', true),
-        children: []
-    },
-    {
-        path: '/forms/:id',
-        name: 'forms.view',
-        meta: {
-            auth: false,
-            permission: 'view_forms'
-        },
-        component: lazyLoading('+forms', true),
+        children: [
+            /*
+             * Contact Us Routes
+             */
+            {
+                path: '/forms/contact-us',
+                name: 'forms.contact.index',
+                meta: {
+                    menu: true,
+                    auth: true,
+                    permission: 'view_forms'
+                },
+                component: lazyLoading('+forms/contact', true)
+            },
+            {
+                path: '/forms/contact-us/:id/reply',
+                name: 'forms.contact.reply',
+                meta: {
+                    auth: true,
+                    permission: 'update_forms'
+                },
+                component: lazyLoading('+forms/contact/reply')
+            },
+        ]
     }
 ];
 

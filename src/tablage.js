@@ -11,7 +11,10 @@ export default function (app) {
             let self = this;
             this.columns.push({
                 render: function (e, v, data) {
-                    let actions = `<span data-href="${data.id}">${self.actions}</span>`;
+                    let actions = '';
+                    if(!data.deleted_at) {
+                        actions = `<span data-href="${data.id}">${self.actions}</span>`;
+                    }
                     if (self.edit && data.deleted_at == null) {
                         actions += `<a data-href="${data.id}" title="${app.$t(self.edit)}" class="edit btn btn-success"> <i class="fa fa-edit"></i></a>`;
                     }

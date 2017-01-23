@@ -248,7 +248,7 @@
         update() {
             this.$http.put(this.$store.state.config.api_url + 'pages/' + this.$route.params.id, this.page)
                 .then(response => {
-                    this.$router.push({name: 'pages.all'})
+                    this.$router.push({name: 'pages.all'});
                     this.$events.$emit('notify', {
                         type: 'info',
                         title: 'Success !',
