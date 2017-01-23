@@ -1,44 +1,55 @@
-<template lang="jade">
-form.form-horizontal(@submit.prevent='save')
-  .row
-    .col-md-12
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.enabled') }} :
-        .col-sm-9
-          input(type='checkbox', v-model='config.maintenance_active')
-      .hr-line-dashed
-    .col-md-12
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.debug_mode') }} :
-        .col-sm-9
-          input(type='checkbox', v-model='config.app_debug')
-
-      .hr-line-dashed
-    .col-md-12
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.maintenance_type') }} :
-        .col-sm-9
-          select.form-control()
-            option(value='0') Completely Down
-            option(value='1') Maintenance in Progress Banner Only
-
-      .hr-line-dashed
-    .col-md-12
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.maintenance_message') }} :
-        .col-sm-9
-          textarea.form-control(rows='6', v-model='config.maintenance_message')
-      .hr-line-dashed
-
-    .col-md-12
-      router-link.btn.btn-white(:to="{name: 'pages.all'}") {{ $t('form.cancel') }}
-      button.btn.btn-primary(:disabled='form.submitting', type='submit')
-        i.fa.fa-spinner.fa-pulse(v-if='form.submitting')
-        span {{ $t('form.save') }}
+<template>
+    <form class="form-horizontal" @submit.prevent="save">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.enabled') }} :</label>
+                    <div class="col-sm-9 material-switch">
+                        <input id="maintenance_active" v-model="config.maintenance_active" type="checkbox"/>
+                        <label for="maintenance_active" class="label-primary"></label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.debug_mode') }} :</label>
+                    <div class="col-sm-9 material-switch">
+                        <input id="app_debug" v-model="config.app_debug" type="checkbox"/>
+                        <label for="app_debug" class="label-primary"></label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.maintenance_type') }} :</label>
+                    <div class="col-sm-9">
+                        <select class="form-control">
+                            <option value="0">Completely Down</option>
+                            <option value="1">Maintenance in Progress Banner Only</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.maintenance_message') }} :</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="6" v-model="config.maintenance_message"></textarea>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-12">
+                <router-link class="btn btn-white" :to="{name: 'system.sites.index'}">{{ $t('form.cancel') }}</router-link>
+                <button class="btn btn-primary" :disabled="form.submitting" type="submit">
+                    <i class="fa fa-spinner fa-pulse" v-if="form.submitting"></i><span>{{ $t('form.save') }}</span>
+                </button>
+            </div>
+        </div>
+    </form>
 </template>
 
 <script>

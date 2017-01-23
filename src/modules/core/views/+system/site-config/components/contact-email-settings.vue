@@ -65,8 +65,10 @@
 
         <div class="row">
             <div class="col-md-12">
-                <router-link class="btn btn-white" :to="{name: 'pages.all'}">{{ $t('form.cancel') }}</router-link>
-                <button class="btn btn-primary" :disabled="form.submitting" type="submit"><i class="fa fa-spinner fa-pulse" v-if="form.submitting"></i><span>{{ $t('form.save') }}</span></button>
+                <router-link class="btn btn-white" :to="{name: 'system.sites.index'}">{{ $t('form.cancel') }}</router-link>
+                <button class="btn btn-primary" :disabled="form.submitting" type="submit">
+                    <i class="fa fa-spinner fa-pulse" v-if="form.submitting"></i><span>{{ $t('form.save') }}</span>
+                </button>
             </div>
         </div>
     </form>

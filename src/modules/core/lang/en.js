@@ -147,36 +147,38 @@ export default {
         send_reply: 'Send Reply'
     },
     config: {
-      site_config: 'Site Config',
-      site_title: 'Site Title',
-      company_name: 'Company Name',
-      company: 'Company',
-      config_success: 'Your Config Was Updated Successfully',
-      name: 'Name',
-      title: 'Title',
-      tagline: 'Tagline',
-      keywords: 'Keywords',
-      description: 'Description',
-      email: 'Email',
-      phone: 'Phone',
-      fix: 'Fix',
-      address: 'Address',
-      public_key: 'Public Key',
-      private_key: 'Private Key',
-      email_system: 'Email System',
-      enabled: 'Enabled',
+        site_config: 'Site Config',
+        site_title: 'Site Title',
+        company_name: 'Company Name',
+        company: 'Company',
+        config_success: 'Your Config Was Updated Successfully',
+        name: 'Name',
+        title: 'Title',
+        tagline: 'Tagline',
+        keywords: 'Keywords',
+        description: 'Description',
+        email: 'Email',
+        phone: 'Phone',
+        fix: 'Fix',
+        address: 'Address',
+        public_key: 'Public Key',
+        private_key: 'Private Key',
+        email_system: 'Email System',
+        enabled: 'Enabled',
 
-      app_secret: 'App Secret',
-      app_id: 'App ID',
-      maintenance_message: 'Maintenance Message',
-      maintenance_type: 'Maintenance type',
+        app_secret: 'App Secret',
+        app_id: 'App ID',
+        maintenance_message: 'Maintenance Message',
+        maintenance_type: 'Maintenance type',
+        debug_mode: 'Debug Mode',
 
-      smtp: {
-        host: 'Host',
-        port: 'Port',
-        username: 'Username',
-        password: 'Password',
-      }
+
+        smtp: {
+            host: 'Host',
+            port: 'Port',
+            username: 'Username',
+            password: 'Password',
+        }
     },
     seo: {
         title: 'Meta Title',
@@ -184,8 +186,5 @@ export default {
         description: 'Meta Description'
     },
 
-
-    // other
-    'Contact Us': 'Contact Us'
 
 };
