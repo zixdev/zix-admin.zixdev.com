@@ -29,7 +29,7 @@
                     <div class="col-md-6">
                         <button class="btn btn-priamry" @click="save()" :disabled="submitting">
                             <i v-if="submitting" class="fa fa-spinner fa-pulse"></i>
-                            {{ $t('form.updated') }}
+                            {{ $t('form.update') }}
                         </button>
                     </div>
                 </div>

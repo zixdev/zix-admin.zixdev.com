@@ -6,9 +6,8 @@
         </div>
         <div class="ibox-content">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div>
-
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active">
@@ -111,7 +110,7 @@
 
 
                 </div>
-                <div class="col-md-7 col-md-offset-1">
+                <div class="col-md-6 col-md-offset-1">
                     <h3 class="text-center">
                         Form Demo
                     </h3>
@@ -236,14 +235,15 @@
         }
 
         save() {
-            console.info(this.form)
             this.$http.post(this.$store.state.config.api_url + 'forms/' + this.$route.params.slug + '/fields', this.form.fields)
                 .then(response => {
-                    console.info(response)
-                })
-                .catch(error => {
-                    console.warn(error)
-                })
+                    this.$events.$emit('notify', {
+                        type: 'info',
+                        title: 'Success !',
+                        message: 'Form Fields Was Updated Successfully!'
+                    });
+                    this.$router.push({name: 'system.forms.index'});
+                });
         }
 
         add() {

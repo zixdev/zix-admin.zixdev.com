@@ -31,7 +31,7 @@
     import Component from 'vue-class-component'
 
     @Component
-    export default class IndexPages {
+    export default class Pages {
         mounted() {
             let table = DataTable;
             table.url = this.$store.state.config.api_url + 'pages';

@@ -81,47 +81,6 @@ export default [
                 component: lazyLoading('+system/site-config', true)
             },
 
-            /*
-             * System Forms
-             */
-            {
-                path: '/system/forms/',
-                name: 'system.forms.index',
-                meta: {
-                    menu: true,
-                    auth: true,
-                    permission: 'view_forms'
-                },
-                component: lazyLoading('+system/forms', true)
-            },
-            {
-                path: '/system/forms/create',
-                name: 'system.forms.add',
-                meta: {
-                    auth: true,
-                    permission: 'create_forms'
-                },
-                component: lazyLoading('+system/forms/create')
-            },
-
-            {
-                path: '/system/forms/:id/edit',
-                name: 'system.forms.edit',
-                meta: {
-                    auth: true,
-                    permission: 'update_forms'
-                },
-                component: lazyLoading('+system/forms/create')
-            },
-            {
-                path: '/system/:slug/fields',
-                name: 'system.forms.fields.index',
-                meta: {
-                    auth: true,
-                    permission: 'update_forms'
-                },
-                component: lazyLoading('+system/forms/fields')
-            },
         ]
     },
 

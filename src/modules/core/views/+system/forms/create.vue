@@ -60,15 +60,18 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            {{ $t('table.notify') }} :
+                            {{ $t('table.notify')}} :
                         </label>
                         <div class="col-sm-10">
-                            <input type="checkbox" v-model="page.notify">
+                            <div class="material-switch" :title="$t('table.notify')">
+                                <input id="permission.name" v-model="page.notify" type="checkbox"/>
+                                <label for="permission.name" class="label-primary"></label>
+                            </div>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
 
-                    <div class="form-group" v-if="page.notify">
+                    <div class="form-group" v-if="page.notify" title="Notify this email when a user responses to this form">
                         <label class="col-sm-2 control-label">
                             {{ $t('table.notify_email') }} :
                         </label>
@@ -130,10 +133,7 @@
             return this.$route.params.id ? true : false;
         }
 
-
-
         mounted() {
-
             /*
              * When the route changes from edit to add
              * we need to update the page
@@ -175,6 +175,11 @@
         create() {
             this.$http.post(this.$store.state.config.api_url + 'forms', this.page)
                 .then(response => {
+                    this.$events.$emit('notify', {
+                        type: 'info',
+                        title: 'Success !',
+                        message: 'Your Form Was Created Successfully!'
+                    })
                     this.$router.push({name: 'system.forms.fields.index', params: {slug: this.page.slug}});
                 })
                 .catch(error => {

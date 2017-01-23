@@ -108,6 +108,8 @@ export default {
         responded: 'Responded',
         identifier: 'Identifier',
         __actions: ' ',
+        notify: 'Notify',
+        notify_email: 'Notify This Email',
         notification: {
             type: {
                 delete: 'warning',
