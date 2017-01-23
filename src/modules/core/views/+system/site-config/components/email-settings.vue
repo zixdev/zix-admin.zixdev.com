@@ -1,79 +1,95 @@
-<template lang="jade">
-form.form-horizontal(@submit.prevent='save')
-  .row
-    .col-md-12
-      h1 Email Sender
-      .hr-line-dashed
-    .col-md-6
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.name') }} :
-        .col-sm-9
-          input.form-control(type='text', v-model='config.mail_from_name', minlength='3', maxlength='255')
-      .hr-line-dashed
-    .col-md-6
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.email') }} :
-        .col-sm-9
-          input.form-control(type='text', v-model='config.mail_from_address', minlength='3', maxlength='255')
-      .hr-line-dashed
-
-    .col-md-12
-      h1 Driver
-        small.text-uppercase ({{ config.mail_driver }})
-      .hr-line-dashed
-    .col-md-6.col-md-offset-3
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.mail_system') }}
-        .col-sm-9
-          select.form-control(type='text', v-model='config.mail_driver')
-            option(value='smtp') SMTP
-            option(value='mail') MAIL
-            option(value='sendmail') SENDMAIL
-            option(value='mailgun') MAILGUN
-            option(value='mandrill') MANDRILL
-            option(value='sparkpost') SPARKPOST
-            option(value='ses') SES
-      .hr-line-dashed
-  .row(v-if='config.mail_driver == "smtp"')
-    .col-md-6
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.smtp.host') }} :
-        .col-sm-9
-          input.form-control(type='text', v-model='config.mail_host', minlength='3', maxlength='255')
-      .hr-line-dashed
-    .col-md-6
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.smtp.port') }} :
-        .col-sm-9
-          input.form-control(type='text', v-model='config.mail_port', minlength='3', maxlength='255')
-      .hr-line-dashed
-    .col-md-6
-      .form-group
-        label.col-sm-3.control-label(:title="$t('config.email')")
-          | {{ $t('config.smtp.username') }} :
-        .col-sm-9
-          input.form-control(type='text', v-model='config.mail_username', :title="$t('config.email')", minlength='3', maxlength='255')
-      .hr-line-dashed
-    .col-md-6
-      .form-group
-        label.col-sm-3.control-label
-          | {{ $t('config.smtp.password') }} :
-        .col-sm-9
-          input.form-control(type='password', v-model='config.mail_password', minlength='3', maxlength='255')
-      .hr-line-dashed
-
-
-  .row
-    .col-md-12
-      router-link.btn.btn-white(:to="{name: 'pages.all'}") {{ $t('form.cancel') }}
-      button.btn.btn-primary(:disabled='form.submitting', type='submit')
-        i.fa.fa-spinner.fa-pulse(v-if='form.submitting')
-        span {{ $t('form.save') }}
+<template>
+    <form class="form-horizontal" @submit.prevent="save">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Email Sender</h1>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.name') }} :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" v-model="config.mail_from_name" minlength="3" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.email') }} :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" v-model="config.mail_from_address" minlength="3" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-12">
+                <h1>Driver<small class="text-uppercase">({{ config.mail_driver }})</small></h1>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.mail_system') }}</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" type="text" v-model="config.mail_driver">
+                            <option value="smtp">SMTP</option>
+                            <option value="mail">MAIL</option>
+                            <option value="sendmail">SENDMAIL</option>
+                            <option value="mailgun">MAILGUN</option>
+                            <option value="mandrill">MANDRILL</option>
+                            <option value="sparkpost">SPARKPOST</option>
+                            <option value="ses">SES</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+        </div>
+        <div class="row" v-if="config.mail_driver == 'smtp'">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.smtp.host') }} :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" v-model="config.mail_host" minlength="3" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.smtp.port') }} :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" v-model="config.mail_port" minlength="3" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" :title="$t('config.email')">{{ $t('config.smtp.username') }} :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" v-model="config.mail_username" :title="$t('config.email')" minlength="3" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ $t('config.smtp.password') }} :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="password" v-model="config.mail_password" minlength="3" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <router-link class="btn btn-white" :to="{name: 'pages.all'}">{{ $t('form.cancel') }}</router-link>
+                <button class="btn btn-primary" :disabled="form.submitting" type="submit"><i class="fa fa-spinner fa-pulse" v-if="form.submitting"></i><span>{{ $t('form.save') }}</span></button>
+            </div>
+        </div>
+    </form>
 
 </template>
 
